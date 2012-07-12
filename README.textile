@@ -1,0 +1,5 @@
+This webapp demo is made to test OAuth (client and server) support in CAS server version >= 3.5.1.
+
+The cas-oauth-client-demo webapp should be started on localhost:8080/cas and the cas-oauth-server-demo webapp should be started on localhost:8080/cas2.
+
+8 automated tests can be used to test all the OAuth providers available in ScribeUP in a complete authentication process from CAS server through OAuth provider to CAS application.

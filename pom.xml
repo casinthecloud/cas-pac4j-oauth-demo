@@ -1,0 +1,54 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.leleuj</groupId>
+    <artifactId>cas-oauth-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>CAS OAuth demo</name>
+    <description>CAS OAuth demo</description>
+    <dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jasig.cas</groupId>
+				<artifactId>cas-server-webapp</artifactId>
+				<version>${cas.version}</version>
+				<type>war</type>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jasig.cas</groupId>
+				<artifactId>cas-server-support-oauth</artifactId>
+				<version>${cas.version}</version>
+			</dependency>
+		</dependencies>
+    </dependencyManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.7</version>
+					<configuration>
+						<wtpversion>2.0</wtpversion>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<modules>
+		<module>cas-oauth-client-demo</module>
+		<module>cas-oauth-server-demo</module>
+	</modules>
+    <properties>
+        <cas.version>3.5.1-SNAPSHOT</cas.version>
+    </properties>
+</project>

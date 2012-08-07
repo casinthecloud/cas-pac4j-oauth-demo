@@ -12,6 +12,7 @@ import org.scribe.up.session.UserSession;
 import org.scribe.up.test.provider.impl.TestProvider;
 
 import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.html.HtmlAnchor;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlPasswordInput;
@@ -39,7 +40,9 @@ public class TestCasWrapperProvider20 extends TestProvider {
         HtmlPasswordInput passwd = form.getInputByName("password");
         passwd.setValueAttribute("leleuj");
         HtmlSubmitInput submit = form.getInputByName("submit");
-        HtmlPage callbackPage = submit.click();
+        HtmlPage confirmPage = submit.click();
+        HtmlAnchor allowLink = confirmPage.getAnchorByName("allow");
+        HtmlPage callbackPage = allowLink.click();
         String callbackUrl = callbackPage.getUrl().toString();
         logger.debug("callbackUrl : {}", callbackUrl);
         return callbackUrl;

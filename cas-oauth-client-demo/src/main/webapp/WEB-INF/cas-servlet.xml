@@ -10,7 +10,7 @@
 
     <bean id="oauthAction" class="org.jasig.cas.support.oauth.web.flow.OAuthAction">
         <property name="centralAuthenticationService" ref="centralAuthenticationService" />
-        <property name="providers" ref="oauthProviders" />
+        <property name="configuration" ref="oauthConfig" />
     </bean>
                 
 	<!-- Theme Resolver -->
@@ -128,7 +128,7 @@
 	</bean>
 
 	<bean id="oauth10loginController" class="org.jasig.cas.support.oauth.web.OAuth10LoginController">
-		<property name="providers" ref="oauthProviders" />
+		<property name="configuration" ref="oauthConfig" />
 	</bean>
 	
     <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController" /> 

@@ -98,7 +98,7 @@
 
 				<bean
 					class="org.jasig.cas.support.oauth.authentication.handler.support.OAuthAuthenticationHandler">
-					<property name="providers" ref="oauthProviders" />
+					<property name="configuration" ref="oauthConfig" />
 				</bean>
 
 			</list>

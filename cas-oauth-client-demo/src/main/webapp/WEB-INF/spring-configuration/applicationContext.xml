@@ -13,7 +13,6 @@
     <bean id="facebook1" class="org.scribe.up.provider.impl.FacebookProvider">
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
         <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events" />
         <property name="friendsReturned" value="true" />
         <property name="moviesReturned" value="true" />
@@ -27,53 +26,46 @@
     <bean id="twitter1" class="org.scribe.up.provider.impl.TwitterProvider">
         <property name="key" value="OPEWaSoTuAe49K4dSoRvNw" />
         <property name="secret" value="aKmvleltXAmLKcnlMgzRjTsCnhV3QVMVDh153xJttCo" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
     <bean id="google1" class="org.scribe.up.provider.impl.GoogleProvider">
         <property name="key" value="anonymous" />
         <property name="secret" value="anonymous" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
     <bean id="yahoo1" class="org.scribe.up.provider.impl.YahooProvider">
         <property name="key" value="dj0yJmk9MzhNZWFkeXQxN09GJmQ9WVdrOVRrbzNVVVJMTkdrbWNHbzlNVGc0TURNek5EVTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD1lNw--" />
         <property name="secret" value="2f3146ac90d60b9f79125b1167437b6c64657a0b" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
     <bean id="linkedin1" class="org.scribe.up.provider.impl.LinkedInProvider">
         <property name="key" value="yf7sgiahy7o6" />
         <property name="secret" value="rDvaZb3veq2x1Pgi" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
     <bean id="github1" class="org.scribe.up.provider.impl.GitHubProvider">
         <property name="key" value="bb7977b9e7f892c115c3" />
         <property name="secret" value="15a6f06329945e1ac5b6f715dcae5314bf88b005" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
     <bean id="caswrapper1" class="org.jasig.cas.support.oauth.provider.impl.CasWrapperProvider20">
         <property name="key" value="this_is_the_key" />
         <property name="secret" value="this_is_the_secret" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
         <property name="serverUrl" value="http://localhost:8080/cas2/oauth2.0" />
     </bean>
 
     <bean id="live1" class="org.scribe.up.provider.impl.WindowsLiveProvider">
         <property name="key" value="00000000440BCAA1" />
         <property name="secret" value="dTZRQNbev04Uod4PWMJ-OWSgc3U5ztWd" />
-        <property name="callbackUrl" value="http://casdemo.localhost.com:8080/cas/login" />
     </bean>
 
     <bean id="wordpress1" class="org.scribe.up.provider.impl.WordPressProvider">
         <property name="key" value="251" />
         <property name="secret" value="6QCZZBhbokJ2YWfbK2F9vBgvGthtKijwaMRP8x57NWjPW2CXFsJJukt2RWvhlKaQ" />
-        <property name="callbackUrl" value="http://localhost:8080/cas/login" />
     </bean>
 
-    <bean id="oauthProviders" class="org.jasig.cas.support.oauth.provider.OAuthProviders">
+    <bean id="oauthConfig" class="org.jasig.cas.support.oauth.OAuthConfiguration">
+        <property name="loginUrl" value="http://localhost:8080/cas/login" />
         <property name="providers">
             <list>
                 <ref bean="facebook1" />

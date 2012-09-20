@@ -1,4 +1,6 @@
-/.settings
-/target
-/.classpath
-/.project
+.classpath
+.project
+.settings/
+target/
+test-output/
+bin/

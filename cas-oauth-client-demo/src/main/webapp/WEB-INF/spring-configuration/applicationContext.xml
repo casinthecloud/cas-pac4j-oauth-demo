@@ -21,6 +21,7 @@
         <property name="likesReturned" value="true" />
         <property name="albumsReturned" value="true" />
         <property name="eventsReturned" value="true" />
+        <!-- property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events" /-->        
     </bean>
 
     <bean id="twitter1" class="org.scribe.up.provider.impl.TwitterProvider">

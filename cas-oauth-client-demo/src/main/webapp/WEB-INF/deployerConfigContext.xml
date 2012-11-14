@@ -62,7 +62,14 @@
 		   </list>
 		</property>
 		 -->
-		
+        
+        <property name="authenticationMetaDataPopulators">
+            <list>
+                <bean
+                    class="org.jasig.cas.support.oauth.authentication.OAuthAuthenticationMetaDataPopulator" />
+            </list>
+        </property>
+        		
 		<!--
 			| This is the List of CredentialToPrincipalResolvers that identify what Principal is trying to authenticate.
 			| The AuthenticationManagerImpl considers them in order, finding a CredentialToPrincipalResolver which 
@@ -184,7 +191,152 @@
                         <property name="description" value="Allows HTTP(S) and IMAP(S) protocols" />
                         <property name="serviceId" value="^(https?|imaps?)://.*" />
                         <property name="evaluationOrder" value="10000001" />
+                        <property name="allowedAttributes">                        
+                             <list>
+                                <!-- facebook -->
+                                <value>name</value>
+                                <value>first_name</value>
+                                <value>middle_name</value>
+                                <value>last_name</value>
+                                <value>gender</value>
+                                <value>locale</value>
+                                <value>languages</value>
+                                <value>link</value>
+                                <value>username</value>
+                                <value>third_party_id</value>
+                                <value>timezone</value>
+                                <value>updated_time</value>
+                                <value>verified</value>
+                                <value>bio</value>
+                                <value>birthday</value>
+                                <value>education</value>
+                                <value>email</value>
+                                <value>hometown</value>
+                                <value>interested_in</value>
+                                <value>location</value>
+                                <value>political</value>
+                                <value>favorite_athletes</value>
+                                <value>favorite_teams</value>
+                                <value>quotes</value>
+                                <value>relationship_status</value>
+                                <value>religion</value>
+                                <value>significant_other</value>
+                                <value>website</value>
+                                <value>work</value>
+                                <value>likes</value>
+                                <value>books</value>
+                                <value>music</value>
+                                <value>movies</value>
+                                <value>friends</value>
+                                <value>albums</value>
+                                <value>events</value>
+                                <value>access_token</value>
+                                <!-- facebook -->
+                                <!-- github -->
+                                <value>company</value>
+                                <value>following</value>
+                                <value>blog</value>
+                                <value>public_repos</value>
+                                <value>public_gists</value>
+                                <value>disk_usage</value>
+                                <value>collaborators</value>
+                                <value>plan</value>
+                                <value>owned_private_repos</value>
+                                <value>total_private_repos</value>
+                                <value>private_gists</value>
+                                <value>login</value>
+                                <value>followers</value>
+                                <value>created_at</value>
+                                <value>type</value>
+                                <value>html_url</value>
+                                <value>avatar_url</value>
+                                <value>gravatar_id</value>
+                                <value>hireable</value>
+                                <!-- github -->
+                                <!-- google -->
+                                <value>profileUrl</value>
+                                <value>isViewer</value>
+                                <value>thumbnailUrl</value>
+                                <value>formatted</value>
+                                <value>familyName</value>
+                                <value>givenName</value>
+                                <value>displayName</value>
+                                <value>urls</value>
+                                <value>photos</value>
+                                <!-- google -->
+                                <!-- linkedin -->
+                                <value>first-name</value>
+                                <value>last-name</value>
+                                <value>headline</value>
+                                <value>url</value>
+                                <!-- linkedin -->
+                                <!-- twitter -->
+                                <value>contributors_enabled</value>
+                                <value>default_profile</value>
+                                <value>default_profile_image</value>
+                                <value>description</value>
+                                <value>favourites_count</value>
+                                <value>follow_request_sent</value>
+                                <value>following</value>
+                                <value>followers_count</value>
+                                <value>friends_count</value>
+                                <value>geo_enabled</value>
+                                <value>is_translator</value>
+                                <value>lang</value>
+                                <value>listed_count</value>
+                                <value>notifications</value>
+                                <value>profile_background_color</value>
+                                <value>profile_background_image_url</value>
+                                <value>profile_background_image_url_https</value>
+                                <value>profile_background_tile</value>
+                                <value>profile_image_url</value>
+                                <value>profile_image_url_https</value>
+                                <value>profile_link_color</value>
+                                <value>profile_sidebar_border_color</value>
+                                <value>profile_sidebar_fill_color</value>
+                                <value>profile_text_color</value>
+                                <value>profile_use_background_image</value>
+                                <value>protected</value>
+                                <value>screen_name</value>
+                                <value>show_all_inline_media</value>
+                                <value>statuses_count</value>
+                                <value>time_zone</value>
+                                <value>utc_offset</value>
+                                <!-- twitter -->
+                                <!-- yahoo -->
+                                <value>aboutMe</value>
+                                <value>addresses</value>
+                                <value>birthYear</value>
+                                <value>birthdate</value>
+                                <value>created</value>
+                                <value>displayAge</value>
+                                <value>disclosures</value>
+                                <value>emails</value>
+                                <value>image</value>
+                                <value>interests</value>
+                                <value>isConnected</value>
+                                <value>memberSince</value>
+                                <value>nickname</value>
+                                <value>timeZone</value>
+                                <value>updated</value>
+                                <value>uri</value>
+                                <!-- yahoo -->
+                                <!-- cas wrapper -->
+                                <value>uid</value>
+                                <value>eduPersonAffiliation</value>
+                                <value>groupMembership</value>
+                                <!-- cas wrapper -->
+                                <!-- wordpress -->
+                                <value>display_name</value>
+                                <value>primary_blog</value>
+                                <value>avatar_URL</value>
+                                <value>profile_URL</value>
+                                <value>links</value>
+                                <!-- wordpress -->
+                            </list>
+                        </property>
                     </bean>
+
                     <!--
                     Use the following definition instead of the above to further restrict access
                     to services within your domain (including subdomains).

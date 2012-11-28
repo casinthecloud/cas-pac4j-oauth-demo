@@ -34,14 +34,15 @@
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
         <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events" />
-        <property name="friendsReturned" value="true" />
+        <!-- cas-server-support 3.5.1 / scribe-up 1.1.0 : property name="friendsReturned" value="true" />
         <property name="moviesReturned" value="true" />
         <property name="musicReturned" value="true" />
         <property name="booksReturned" value="true" />
         <property name="likesReturned" value="true" />
         <property name="albumsReturned" value="true" />
-        <property name="eventsReturned" value="true" />
-        <!-- property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events" /-->        
+        <property name="eventsReturned" value="true" /-->
+        <!-- cas-server-support 3.5.2 / scribe-up 1.2.0 : -->
+        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events" />        
     </bean>
 
     <bean id="twitter1" class="org.scribe.up.provider.impl.TwitterProvider">

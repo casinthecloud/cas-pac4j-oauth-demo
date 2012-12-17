@@ -69,6 +69,6 @@
 	</modules>
 
 	<properties>
-		<cas.version>3.5.2-SNAPSHOT</cas.version>
+		<cas.version>4.0.0-SNAPSHOT</cas.version>
 	</properties>
 </project>

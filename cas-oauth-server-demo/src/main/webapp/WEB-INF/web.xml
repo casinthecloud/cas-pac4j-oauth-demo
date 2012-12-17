@@ -23,7 +23,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
-  <display-name>Central Authentication System (CAS) 3.5.2-SNAPSHOT</display-name>
+  <display-name>Central Authentication System (CAS) 4.0.0-SNAPSHOT</display-name>
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
@@ -52,7 +52,7 @@
   </filter-mapping>
   <filter-mapping>
     <filter-name>springSecurityFilterChain</filter-name>
-    <url-pattern>/services/*</url-pattern>
+    <url-pattern>/statistics</url-pattern>
   </filter-mapping>
 
   <filter>
@@ -151,47 +151,7 @@
 
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
-    <url-pattern>/services/add.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/viewStatistics.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/logout.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/loggedOut.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/manage.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/edit.html</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
     <url-pattern>/openid/*</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>cas</servlet-name>
-    <url-pattern>/services/deleteRegisteredService.html</url-pattern>
-  </servlet-mapping>
-  
-  <servlet-mapping>
-	<servlet-name>cas</servlet-name>
-	<url-pattern>/services/updateRegisteredServiceEvaluationOrder.html</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
@@ -201,18 +161,18 @@
 
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
+    <url-pattern>/statistics</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>cas</servlet-name>
     <url-pattern>/authorizationFailure.html</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>cas</servlet-name>
-    <url-pattern>/403.html</url-pattern>
-  </servlet-mapping>
-
-<servlet-mapping>
-    <servlet-name>cas</servlet-name>
     <url-pattern>/oauth2.0/*</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
 
   <session-config>
     <!-- Default to 5 minute session timeouts -->
@@ -220,13 +180,13 @@
   </session-config>
 
   <error-page>
-    <exception-type>org.springframework.context.ApplicationContextException</exception-type>
-    <location>/WEB-INF/view/jsp/brokenContext.jsp</location>
+    <error-code>401</error-code>
+    <location>/authorizationFailure.html</location>
   </error-page>
 
   <error-page>
-    <error-code>500</error-code>
-    <location>/WEB-INF/view/jsp/errors.jsp</location>
+    <error-code>403</error-code>
+    <location>/authorizationFailure.html</location>
   </error-page>
 
   <error-page>
@@ -235,8 +195,18 @@
   </error-page>
 
   <error-page>
-    <error-code>403</error-code>
-    <location>/403.html</location>
+    <error-code>500</error-code>
+    <location>/WEB-INF/view/jsp/errors.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>501</error-code>
+    <location>/WEB-INF/view/jsp/errors.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>503</error-code>
+    <location>/WEB-INF/view/jsp/errors.jsp</location>
   </error-page>
 
   <welcome-file-list>

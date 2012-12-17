@@ -1,12 +1,12 @@
 package org.leleuj.test;
 
-import java.lang.reflect.Constructor;
 import java.util.Map;
 
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.Saml11TicketValidator;
 import org.jasig.cas.client.validation.TicketValidationException;
+import org.scribe.up.profile.ProfileHelper;
 import org.scribe.up.profile.UserProfile;
 import org.scribe.up.test.util.CommonHelper;
 import org.scribe.utils.OAuthEncoder;
@@ -35,44 +35,40 @@ public final class CasHelper {
     
     private final static String TICKET = "ticket";
     
-    public static HtmlPage getAuhtorizationPage(WebClient webClient, String linkName) throws Exception {
+    public static HtmlPage getAuhtorizationPage(final WebClient webClient, final String linkName) throws Exception {
         return getAuhtorizationPage(webClient, linkName, LOGIN_URL_WITH_SERVICE);
     }
     
-    public static HtmlPage getAuhtorizationPage(WebClient webClient, String linkName, String loginUrl) throws Exception {
-        HtmlPage loginPage = webClient.getPage(loginUrl);
-        HtmlAnchor link = (HtmlAnchor) loginPage.getElementById(linkName);
-        HtmlPage authorizationPage = link.click();
+    public static HtmlPage getAuhtorizationPage(final WebClient webClient, final String linkName, final String loginUrl)
+        throws Exception {
+        final HtmlPage loginPage = webClient.getPage(loginUrl);
+        final HtmlAnchor link = (HtmlAnchor) loginPage.getElementById(linkName);
+        final HtmlPage authorizationPage = link.click();
         return authorizationPage;
     }
     
-    public static Assertion getProfile(String callbackUrl) {
-        Map<String, String[]> parameters = CommonHelper.getParametersFromUrl(callbackUrl);
-        String[] tickets = parameters.get(TICKET);
+    public static Assertion getProfile(final String callbackUrl) {
+        final Map<String, String[]> parameters = CommonHelper.getParametersFromUrl(callbackUrl);
+        final String[] tickets = parameters.get(TICKET);
         if (tickets != null && tickets.length == 1) {
-            String ticket = tickets[0];
-            Saml11TicketValidator saml11TicketValidator = new Saml11TicketValidator(CasHelper.PREFIX_URL);
+            final String ticket = tickets[0];
+            final Saml11TicketValidator saml11TicketValidator = new Saml11TicketValidator(CasHelper.PREFIX_URL);
             try {
                 return saml11TicketValidator.validate(ticket, CasHelper.SERVICE);
-            } catch (TicketValidationException e) {
+            } catch (final TicketValidationException e) {
                 logger.error("Ticket validation exception : ", e);
             }
         }
         return null;
     }
     
-    public static UserProfile getProfile(String callbackUrl, Class<? extends UserProfile> clazz) {
-        Assertion assertion = getProfile(callbackUrl);
+    public static UserProfile getProfile(final String callbackUrl, final Class<? extends UserProfile> clazz) {
+        final Assertion assertion = getProfile(callbackUrl);
         if (assertion != null) {
-            try {
-                AttributePrincipal principal = assertion.getPrincipal();
-                String id = principal.getName();
-                Map<String, Object> attributes = principal.getAttributes();
-                Constructor<? extends UserProfile> constructor = clazz.getDeclaredConstructor(Object.class, Map.class);
-                return constructor.newInstance(id, attributes);
-            } catch (Exception e) {
-                logger.error("Exception : ", e);
-            }
+            final AttributePrincipal principal = assertion.getPrincipal();
+            final String id = principal.getName();
+            final Map<String, Object> attributes = principal.getAttributes();
+            return ProfileHelper.buildProfile(id, attributes);
         }
         return new UserProfile();
     }

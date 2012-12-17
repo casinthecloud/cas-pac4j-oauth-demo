@@ -33,16 +33,8 @@
     <bean id="facebook1" class="org.scribe.up.provider.impl.FacebookProvider">
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
-        <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events" />
-        <!-- cas-server-support 3.5.1 / scribe-up 1.1.0 : property name="friendsReturned" value="true" />
-        <property name="moviesReturned" value="true" />
-        <property name="musicReturned" value="true" />
-        <property name="booksReturned" value="true" />
-        <property name="likesReturned" value="true" />
-        <property name="albumsReturned" value="true" />
-        <property name="eventsReturned" value="true" /-->
-        <!-- cas-server-support 3.5.2 / scribe-up 1.2.0 : -->
-        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events" />        
+        <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events,user_groups,user_actions.music" />
+        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture" />        
     </bean>
 
     <bean id="twitter1" class="org.scribe.up.provider.impl.TwitterProvider">
@@ -70,10 +62,10 @@
         <property name="secret" value="15a6f06329945e1ac5b6f715dcae5314bf88b005" />
     </bean>
 
-    <bean id="caswrapper1" class="org.jasig.cas.support.oauth.provider.impl.CasWrapperProvider20">
+    <bean id="caswrapper1" class="org.scribe.up.provider.impl.CasOAuthWrapperProvider">
         <property name="key" value="this_is_the_key" />
         <property name="secret" value="this_is_the_secret" />
-        <property name="serverUrl" value="http://localhost:8080/cas2/oauth2.0" />
+        <property name="casServerUrl" value="http://localhost:8080/cas2/oauth2.0" />
     </bean>
 
     <bean id="wordpress1" class="org.scribe.up.provider.impl.WordPressProvider">
@@ -81,8 +73,8 @@
         <property name="secret" value="6QCZZBhbokJ2YWfbK2F9vBgvGthtKijwaMRP8x57NWjPW2CXFsJJukt2RWvhlKaQ" />
     </bean>
 
-    <bean id="oauthConfig" class="org.jasig.cas.support.oauth.OAuthConfiguration">
-        <property name="loginUrl" value="http://localhost:8080/cas/login" />
+    <bean id="providersDefinition" class="org.scribe.up.provider.ProvidersDefinition">
+        <property name="baseUrl" value="http://localhost:8080/cas/login" />
         <property name="providers">
             <list>
                 <ref bean="facebook1" />
@@ -111,9 +103,14 @@
     <bean id="timingAspect" class="org.perf4j.log4j.aop.TimingAspect"/>
 
 
-    <!-- Message source for this context, loaded from localized "messages_xx" files -->
+    <!-- Message source for this context, loaded from localized "messages_xx" files.
+    	Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
+    	will be able to revert back to the default language bundle that is "messages.properties"
+    	and will not rely on the JVM default locale which introduces the side effect of rendering
+    	the UI in the JVM locale by default.
+    -->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
-          p:basename="messages"/>
+          p:basename="messages" p:fallbackToSystemLocale="false" />
 
     <bean
             id="servicesManager"

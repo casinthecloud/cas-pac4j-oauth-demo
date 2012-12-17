@@ -62,15 +62,15 @@
 		   </list>
 		</property>
 		 -->
-        
+		
         <property name="authenticationMetaDataPopulators">
             <list>
                 <bean
                     class="org.jasig.cas.support.oauth.authentication.OAuthAuthenticationMetaDataPopulator" />
             </list>
         </property>
-        		
-		<!--
+		
+        <!--
 			| This is the List of CredentialToPrincipalResolvers that identify what Principal is trying to authenticate.
 			| The AuthenticationManagerImpl considers them in order, finding a CredentialToPrincipalResolver which 
 			| supports the presented credentials.
@@ -140,26 +140,13 @@
 					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
                     
                 <bean class="org.jasig.cas.support.oauth.authentication.handler.support.OAuthAuthenticationHandler">
-                    <property name="configuration" ref="oauthConfig" />
+                    <property name="providersDefinition" ref="providersDefinition" />
                 </bean>
-                    
+                
 			</list>
 		</property>
 	</bean>
 
-
-	<!--
-	This bean defines the security roles for the Services Management application.  Simple deployments can use the in-memory version.
-	More robust deployments will want to use another option, such as the Jdbc version.
-	
-	The name of this should remain "userDetailsService" in order for Spring Security to find it.
-	 -->
-    <!-- <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />-->
-
-    <sec:user-service id="userDetailsService">
-        <sec:user name="@@THIS SHOULD BE REPLACED@@" password="notused" authorities="ROLE_ADMIN" />
-    </sec:user-service>
-	
 	<!-- 
 	Bean that defines the attributes that a service may return.  This example uses the Stub/Mock version.  A real implementation
 	may go against a database or LDAP server.  The id should remain "attributeRepository" though.
@@ -230,6 +217,9 @@
                                 <value>friends</value>
                                 <value>albums</value>
                                 <value>events</value>
+                                <value>groups</value>
+                                <value>music.listens</value>
+                                <value>picture</value>
                                 <value>access_token</value>
                                 <!-- facebook -->
                                 <!-- github -->
@@ -336,7 +326,6 @@
                             </list>
                         </property>
                     </bean>
-
                     <!--
                     Use the following definition instead of the above to further restrict access
                     to services within your domain (including subdomains).

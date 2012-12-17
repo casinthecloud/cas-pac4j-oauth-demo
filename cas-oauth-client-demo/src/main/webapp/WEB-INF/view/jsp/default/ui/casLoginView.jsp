@@ -41,7 +41,7 @@
 
 						<c:if test="${empty sessionScope.openIdLocalId}">
 						<spring:message code="screen.welcome.label.netid.accesskey" var="userNameAccessKey" />
-						<form:input cssClass="required" cssErrorClass="error" id="username" size="25" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="false" htmlEscape="true" />
+						<form:input cssClass="required" cssErrorClass="error" id="username" size="25" tabindex="1" accesskey="${userNameAccessKey}" path="username" autocomplete="off" htmlEscape="true" />
 						</c:if>
                     </div>
                     <div class="row fl-controls-left">
@@ -109,36 +109,37 @@
                      </c:when>
                      <c:otherwise>
                         <c:set var="loginUrl" value="login?${xquery}${not empty xquery ? '&' : ''}locale=" />
-						<ul
-							><li class="first"><a href="${loginUrl}en">English</a></li
-							><li><a href="${loginUrl}es">Spanish</a></li
-							><li><a href="${loginUrl}fr">French</a></li
-							><li><a href="${loginUrl}ru">Russian</a></li
-							><li><a href="${loginUrl}nl">Nederlands</a></li
-							><li><a href="${loginUrl}sv">Svenska</a></li
-							><li><a href="${loginUrl}it">Italiano</a></li
-							><li><a href="${loginUrl}ur">Urdu</a></li
-							><li><a href="${loginUrl}zh_CN">Chinese (Simplified)</a></li
-                            ><li><a href="${loginUrl}zh_TW">Chinese (Traditional)</a></li
-							><li><a href="${loginUrl}de">Deutsch</a></li
-							><li><a href="${loginUrl}ja">Japanese</a></li
-							><li><a href="${loginUrl}hr">Croatian</a></li
-							><li><a href="${loginUrl}cs">Czech</a></li
-							><li><a href="${loginUrl}sl">Slovenian</a></li
-                            ><li><a href="${loginUrl}ca">Catalan</a></li
-                            ><li><a href="${loginUrl}mk">Macedonian</a></li
-                            ><li><a href="${loginUrl}fa">Farsi</a></li
-                            ><li><a href="${loginUrl}ar">Arabic</a></li
-                            ><li><a href="${loginUrl}pt_PT">Portuguese</a></li
-                            ><li><a href="${loginUrl}pt_BR">Portuguese (Brazil)</a></li
-							><li class="last"><a href="${loginUrl}pl">Polish</a></li
-						></ul>
+						<ul>
+							<li class="first"><a href="${loginUrl}en">English</a></li>
+							<li><a href="${loginUrl}es">Spanish</a></li>
+							<li><a href="${loginUrl}fr">French</a></li>
+							<li><a href="${loginUrl}ru">Russian</a></li>
+							<li><a href="${loginUrl}nl">Nederlands</a></li>
+							<li><a href="${loginUrl}sv">Svenska</a></li>
+							<li><a href="${loginUrl}it">Italiano</a></li>
+							<li><a href="${loginUrl}ur">Urdu</a></li>
+							<li><a href="${loginUrl}zh_CN">Chinese (Simplified)</a></li>
+							<li><a href="${loginUrl}zh_TW">Chinese (Traditional)</a></li>
+							<li><a href="${loginUrl}de">Deutsch</a></li>
+							<li><a href="${loginUrl}ja">Japanese</a></li>
+							<li><a href="${loginUrl}hr">Croatian</a></li>
+							<li><a href="${loginUrl}cs">Czech</a></li>
+							<li><a href="${loginUrl}sl">Slovenian</a></li>
+							<li><a href="${loginUrl}ca">Catalan</a></li>
+							<li><a href="${loginUrl}mk">Macedonian</a></li>
+							<li><a href="${loginUrl}fa">Farsi</a></li>
+							<li><a href="${loginUrl}ar">Arabic</a></li>
+							<li><a href="${loginUrl}pt_PT">Portuguese</a></li>
+							<li><a href="${loginUrl}pt_BR">Portuguese (Brazil)</a></li>
+							<li class="last"><a href="${loginUrl}pl">Polish</a></li>
+						</ul>
                      </c:otherwise>
                    </c:choose>
                 </div>
 				</div>
             </div>
 <jsp:directive.include file="includes/bottom.jsp" />
+
 
 <a id="facebookAuthorizationUrl" href="${FacebookProviderUrl}">Authenticate with Facebook</a> <br />
 <br />      
@@ -154,5 +155,5 @@
 <br />
 <a id="wordPressAuthorizationUrl" href="${WordPressProviderUrl}">Authenticate with WordPress</a><br />  
 <br />
-<a id="caswrapperAuthorizationUrl" href="${CasWrapperProvider20Url}">Authenticate with another CAS server using OAuth v2.0 protocol</a><br />  
+<a id="caswrapperAuthorizationUrl" href="${CasOAuthWrapperProviderUrl}">Authenticate with another CAS server using OAuth v2.0 protocol</a><br />  
 <br />

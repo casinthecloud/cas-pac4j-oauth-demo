@@ -140,7 +140,7 @@
 					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
                     
                 <bean class="org.jasig.cas.support.oauth.authentication.handler.support.OAuthAuthenticationHandler">
-                    <property name="providersDefinition" ref="providersDefinition" />
+                    <constructor-arg index="0" ref="providersDefinition"/>
                 </bean>
                 
 			</list>

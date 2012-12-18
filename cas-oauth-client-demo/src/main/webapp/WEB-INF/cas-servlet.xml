@@ -29,8 +29,8 @@
   <import resource="spring-configuration/propertyFileConfigurer.xml"/>
 
   <bean id="oauthAction" class="org.jasig.cas.support.oauth.web.flow.OAuthAction">
-    <property name="centralAuthenticationService" ref="centralAuthenticationService" />
-    <property name="providersDefinition" ref="providersDefinition" />
+    <constructor-arg index="0" ref="centralAuthenticationService"/>
+    <constructor-arg index="1" ref="providersDefinition"/>
   </bean>
 
   <!-- Theme Resolver -->
@@ -111,7 +111,7 @@
   </bean>
 
   <bean id="oauth10loginController" class="org.jasig.cas.support.oauth.web.OAuth10LoginController">
-    <property name="providersDefinition" ref="providersDefinition" />
+    <constructor-arg index="0" ref="providersDefinition"/>
   </bean>
   
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>

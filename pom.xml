@@ -20,6 +20,17 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>jasig-developer-repo</id>
+			<name>Jasig developer repository</name>
+			<url>http://developer.jasig.org/repo/content/groups/m2-legacy/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
 	<dependencyManagement>

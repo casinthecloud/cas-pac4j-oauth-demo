@@ -73,7 +73,7 @@
         <property name="secret" value="6QCZZBhbokJ2YWfbK2F9vBgvGthtKijwaMRP8x57NWjPW2CXFsJJukt2RWvhlKaQ" />
     </bean>
 
-    <bean id="providersDefinition" class="org.scribe.up.provider.ProvidersDefinition">
+    <bean id="providersDefinition" class="org.scribe.up.provider.ProvidersDefinition" init-method="init">
         <property name="baseUrl" value="http://localhost:8080/cas/login" />
         <property name="providers">
             <list>

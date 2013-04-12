@@ -82,7 +82,6 @@
         <prop key="/authorizationFailure.html">passThroughController</prop>
         <prop key="/status">healthCheckController</prop>
         <prop key="/statistics">statisticsController</prop>
-        <prop key="/oauth2.0/*">oauth20WrapperController</prop>
       </props>
     </property>
     <property
@@ -97,14 +96,6 @@
      </property>
       -->
   </bean>
-
-  <bean
-    id="oauth20WrapperController"
-    class="org.jasig.cas.support.oauth.web.OAuth20WrapperController"
-    p:loginUrl="http://localhost:8080/cas2/login"
-    p:servicesManager-ref="servicesManager"
-    p:ticketRegistry-ref="ticketRegistry"
-    p:timeout="7200" />
 
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
 

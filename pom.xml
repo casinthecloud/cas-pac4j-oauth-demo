@@ -44,8 +44,34 @@
 			</dependency>
 			<dependency>
 				<groupId>org.jasig.cas</groupId>
+				<artifactId>cas-server-core</artifactId>
+				<version>${cas.version}</version>
+				<type>test-jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.jasig.cas</groupId>
 				<artifactId>cas-server-support-oauth</artifactId>
 				<version>${cas.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jasig.cas</groupId>
+				<artifactId>cas-server-support-pac4j</artifactId>
+				<version>${cas.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-oauth</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-cas</artifactId>
+				<version>${pac4j.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.pac4j</groupId>
+				<artifactId>pac4j-openid</artifactId>
+				<version>${pac4j.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -81,5 +107,6 @@
 
 	<properties>
 		<cas.version>4.0.0-SNAPSHOT</cas.version>
+		<pac4j.version>1.4.0-SNAPSHOT</pac4j.version>
 	</properties>
 </project>

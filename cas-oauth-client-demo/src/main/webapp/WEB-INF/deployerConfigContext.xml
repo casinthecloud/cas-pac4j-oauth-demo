@@ -66,7 +66,7 @@
         <property name="authenticationMetaDataPopulators">
             <list>
                 <bean
-                    class="org.jasig.cas.support.oauth.authentication.OAuthAuthenticationMetaDataPopulator" />
+                    class="org.jasig.cas.support.pac4j.authentication.ClientAuthenticationMetaDataPopulator" />
             </list>
         </property>
 		
@@ -110,7 +110,7 @@
 					class="org.jasig.cas.authentication.principal.HttpBasedServiceCredentialsToPrincipalResolver" />
                     
                 <bean
-                    class="org.jasig.cas.support.oauth.authentication.principal.OAuthCredentialsToPrincipalResolver" />
+                    class="org.jasig.cas.support.pac4j.authentication.principal.ClientCredentialsToPrincipalResolver" />
                     
 			</list>
 		</property>
@@ -139,8 +139,8 @@
 				<bean 
 					class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
                     
-                <bean class="org.jasig.cas.support.oauth.authentication.handler.support.OAuthAuthenticationHandler">
-                    <constructor-arg index="0" ref="providersDefinition"/>
+                <bean class="org.jasig.cas.support.pac4j.authentication.handler.support.ClientAuthenticationHandler">
+                    <constructor-arg index="0" ref="clients"/>
                 </bean>
                 
 			</list>
@@ -222,44 +222,6 @@
                                 <value>picture</value>
                                 <value>access_token</value>
                                 <!-- facebook -->
-                                <!-- github -->
-                                <value>company</value>
-                                <value>following</value>
-                                <value>blog</value>
-                                <value>public_repos</value>
-                                <value>public_gists</value>
-                                <value>disk_usage</value>
-                                <value>collaborators</value>
-                                <value>plan</value>
-                                <value>owned_private_repos</value>
-                                <value>total_private_repos</value>
-                                <value>private_gists</value>
-                                <value>login</value>
-                                <value>followers</value>
-                                <value>created_at</value>
-                                <value>type</value>
-                                <value>html_url</value>
-                                <value>avatar_url</value>
-                                <value>gravatar_id</value>
-                                <value>hireable</value>
-                                <!-- github -->
-                                <!-- google -->
-                                <value>profileUrl</value>
-                                <value>isViewer</value>
-                                <value>thumbnailUrl</value>
-                                <value>formatted</value>
-                                <value>familyName</value>
-                                <value>givenName</value>
-                                <value>displayName</value>
-                                <value>urls</value>
-                                <value>photos</value>
-                                <!-- google -->
-                                <!-- linkedin -->
-                                <value>first-name</value>
-                                <value>last-name</value>
-                                <value>headline</value>
-                                <value>url</value>
-                                <!-- linkedin -->
                                 <!-- twitter -->
                                 <value>contributors_enabled</value>
                                 <value>default_profile</value>
@@ -293,36 +255,11 @@
                                 <value>time_zone</value>
                                 <value>utc_offset</value>
                                 <!-- twitter -->
-                                <!-- yahoo -->
-                                <value>aboutMe</value>
-                                <value>addresses</value>
-                                <value>birthYear</value>
-                                <value>birthdate</value>
-                                <value>created</value>
-                                <value>displayAge</value>
-                                <value>disclosures</value>
-                                <value>emails</value>
-                                <value>image</value>
-                                <value>interests</value>
-                                <value>isConnected</value>
-                                <value>memberSince</value>
-                                <value>nickname</value>
-                                <value>timeZone</value>
-                                <value>updated</value>
-                                <value>uri</value>
-                                <!-- yahoo -->
                                 <!-- cas wrapper -->
                                 <value>uid</value>
                                 <value>eduPersonAffiliation</value>
                                 <value>groupMembership</value>
                                 <!-- cas wrapper -->
-                                <!-- wordpress -->
-                                <value>display_name</value>
-                                <value>primary_blog</value>
-                                <value>avatar_URL</value>
-                                <value>profile_URL</value>
-                                <value>links</value>
-                                <!-- wordpress -->
                             </list>
                         </property>
                     </bean>

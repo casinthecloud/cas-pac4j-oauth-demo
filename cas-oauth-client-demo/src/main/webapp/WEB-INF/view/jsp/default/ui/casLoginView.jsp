@@ -141,19 +141,15 @@
 <jsp:directive.include file="includes/bottom.jsp" />
 
 
-<a id="facebookAuthorizationUrl" href="${FacebookProviderUrl}">Authenticate with Facebook</a> <br />
+<a href="${FacebookClientUrl}">Authenticate with Facebook</a> <br />
 <br />      
-<a id="twitterAuthorizationUrl" href="${TwitterProviderUrl}">Authenticate with Twitter</a><br />
+<a href="${TwitterClientUrl}">Authenticate with Twitter</a><br />
 <br />
-<a id="googleAuthorizationUrl" href="${GoogleProviderUrl}">Authenticate with Google</a><br />  
+<a href="${CasOAuthWrapperClientUrl}">Authenticate with another CAS server using OAuth v2.0 protocol</a><br />  
 <br />
-<a id="yahooAuthorizationUrl" href="${YahooProviderUrl}">Authenticate with Yahoo</a><br />  
+<a href="${CasClientUrl}">Authenticate with another CAS server using CAS protocol</a><br />  
 <br />
-<a id="linkedinAuthorizationUrl" href="${LinkedInProviderUrl}">Authenticate with LinkedIn</a><br />  
-<br />
-<a id="githubAuthorizationUrl" href="${GitHubProviderUrl}">Authenticate with GitHub</a><br />  
-<br />
-<a id="wordPressAuthorizationUrl" href="${WordPressProviderUrl}">Authenticate with WordPress</a><br />  
-<br />
-<a id="caswrapperAuthorizationUrl" href="${CasOAuthWrapperProviderUrl}">Authenticate with another CAS server using OAuth v2.0 protocol</a><br />  
-<br />
+<form action="${MyOpenIdClientUrl}" method="POST">
+  <input type="text" name="openIdUser" value="http://xxx.myopenid.com/" />
+  <input type="submit" value="Authenticate with myopenid.com" />
+</form>

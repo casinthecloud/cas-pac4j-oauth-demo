@@ -17,6 +17,7 @@
 	xmlns:sec="http://www.springframework.org/schema/security"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
 		http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
@@ -27,33 +28,73 @@
 		This is the OAuth configuration XML file. It specifies the beans used by
 		this package in conjunction with spring-security-oauth
 	</description>
+
+	<!-- This is incredibly frustrating. The token endpoint assumes that if 
+		you're authenticated through HTTP basic that automatically you're using the 
+		client_id/client_secret as the credentials. What I was hoping for is that 
+		by authenticating anonymously that it would then look for the client_id in 
+		the request, but so far it hasn't really done that. -->
+
+	<!-- According to spring documentation, getPrincipal() will return null 
+		if the user is authenticated anonymously. So I guess the token endpoint filter 
+		needs to populate the principal -->
+		
     
-    <!-- OAUTH2 Stuff -->
-    <!-- Since the client must be authorized, add security to the authorization 
-        endpoint and token endpoint -->
-    <sec:http authentication-manager-ref="testingAuthenticationManager"
-       pattern="/oauth2.0/**">
-        <sec:http-basic/>
-        <sec:intercept-url pattern='/**'
-            access="ROLE_USER" />
-        <sec:custom-filter ref="oauth2ProviderFilter"
+    <!-- There are 2 authentications that need to be handled:
+        1.) Client Authentication: This is done by the clientAuthenticationManager
+        2.) User Authentication: done by the testingAuthenticationManager
+        
+        The client authentication happens in the token endpoint, while the user 
+        authentication happens in the authorization endpoint -->
+    
+    <!-- token endpoint is anonymous, but can be http basic for password grant type -->
+    <sec:http authentication-manager-ref="clientAuthenticationManager"
+        pattern="/oauth2.0/accessToken*">
+        <sec:custom-filter ref="clientCredentialsTokenEndpointFilter"
             before="PRE_AUTH_FILTER" />
+        <sec:http-basic/>
+        <sec:anonymous/>
     </sec:http>
     
+    <!-- authorization endpoint must be authenticated with the resource owner -->
+    <sec:http authentication-manager-ref="testingAuthenticationManager"
+        pattern="/oauth2.0/**">
+        <sec:intercept-url pattern='/**'
+            access="ROLE_CAS_USER" />
+        <sec:custom-filter ref="oauth2ProviderFilter"
+            before="PRE_AUTH_FILTER" />
+        <sec:http-basic/>
+    </sec:http>
+    
+    <bean id="clientDetailsUserService"
+        class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService"
+        c:clientDetailsService-ref="clientDetailsService" />
+        
     <sec:authentication-manager id="testingAuthenticationManager">
-        <sec:authentication-provider>
-            <sec:user-service>
-       <sec:user name="jmccall@alphapd.gov" password="test" authorities="ROLE_USER"/>
-            </sec:user-service>
-        </sec:authentication-provider>
+        <sec:authentication-provider ref="casServerAuthenticationProvider" />
+    </sec:authentication-manager>
+    
+    <sec:authentication-manager id="clientAuthenticationManager">
+        <sec:authentication-provider user-service-ref="clientDetailsUserService" />
     </sec:authentication-manager>
 
-	<mvc:annotation-driven />
+    <!-- This is needed for the automatic framework endpoint discovery -->
+    <mvc:annotation-driven /> 
+        
+    <bean id="clientCredentialsTokenEndpointFilter"
+        class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter"
+        c:path="/oauth2.0/accessToken" 
+        p:authenticationManager-ref="clientAuthenticationManager"/>
+	
+	<bean id="casServerAuthenticationProvider"
+	   class="org.jasig.cas.support.spring.CasServerAuthenticationProvider" 
+	   c:casAuthenticationManager-ref="authenticationManager" />
 
     <!-- Same thing for the token services -->
     <bean id="tokenServices"
         class="org.springframework.security.oauth2.provider.token.DefaultTokenServices"
-        p:token-store-ref="tokenStore" />
+        p:token-store-ref="tokenStore"
+        p:supportRefreshToken="true" />
 
     <!-- Same thing for the token store, except we want invent our own tokens 
         to match TGT and Service IDs -->
@@ -62,37 +103,40 @@
     <bean id="tokenStore"
         class="org.springframework.security.oauth2.provider.token.InMemoryTokenStore" />
 
-    <!-- TODO:
-        cas user approval redirects to oauth/authorize and not what oauth2.0/authorize
-        why does this configuration need to be here? why not oauthConfiguration.xml? -->
-        
-    <!-- This is just for testing out endpoints. Eventually we want to make this work in spring 1.x style -->
-    <context:component-scan base-package="org.jasig.cas.support.oauth.endpoint" />
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
+	    p:alwaysUseFullPath="true">
+		<property name="urlMap"><map>
+	        <entry key="/oauth2.0/confirm_access">
+		       <bean class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+			       p:viewName="oauthConfirmView" />
+	        </entry>
+<!-- 	        <entry key="/oauth2.0/error"> -->
+<!-- 	           TODO -->
+<!-- 	           <null/> -->
+<!-- 	        </entry> -->
+		</map></property>
+	</bean>
+	
+	
+	<!-- NOTE the default mappings will NOT work here because the whitelabel approval endpoint does not include the servlet path -->
 
     <!-- the /oauth2.0 endpoint is already mapped in web.xml, so we just need 
         to map the endpoint urls -->
+    <!-- TODO move the configuration to a properties file -->
     <oauth2:authorization-server
         client-details-service-ref="clientDetailsService" token-services-ref="tokenServices"
         authorization-endpoint-url="/authorize" token-endpoint-url="/accessToken"
         user-approval-page="forward:confirm_access"
         error-page="forward:error">
-        <!-- Enables the authorization code grant type -->
-        <!-- <oauth2:authorization-code -->
-        <!-- authorization-code-services-ref="customizedAuthorizationCodeServices" -->
-        <!-- /> -->
-        <!-- You can customize the user-approval-page and the approval-parameter-name 
-            here to match the cas login page -->
-        <oauth2:authorization-code disabled="false" />
-<!--         <oauth2:client-credentials/> -->
+        <oauth2:authorization-code />
+        <oauth2:refresh-token/>
         <oauth2:password 
             authentication-manager-ref="testingAuthenticationManager" />
     </oauth2:authorization-server>
     
     <oauth2:client-details-service id="clientDetailsService">
         <oauth2:client client-id="oauth2-client" secret="oauth2-secret"
-            authorized-grant-types="authorization_code" authorities="request_tokens" />
-        <oauth2:client client-id="jmccall@alphapd.gov" secret="test"
-            authorized-grant-types="authorization_code,password" />
+            authorized-grant-types="authorization_code,password,refresh_token" />
     </oauth2:client-details-service>
     
     <oauth2:resource-server

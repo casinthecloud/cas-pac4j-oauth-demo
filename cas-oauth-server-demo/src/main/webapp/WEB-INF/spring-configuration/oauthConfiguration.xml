@@ -29,17 +29,6 @@
 		this package in conjunction with spring-security-oauth
 	</description>
 
-	<!-- This is incredibly frustrating. The token endpoint assumes that if 
-		you're authenticated through HTTP basic that automatically you're using the 
-		client_id/client_secret as the credentials. What I was hoping for is that 
-		by authenticating anonymously that it would then look for the client_id in 
-		the request, but so far it hasn't really done that. -->
-
-	<!-- According to spring documentation, getPrincipal() will return null 
-		if the user is authenticated anonymously. So I guess the token endpoint filter 
-		needs to populate the principal -->
-		
-    
     <!-- There are 2 authentications that need to be handled:
         1.) Client Authentication: This is done by the clientAuthenticationManager
         2.) User Authentication: done by the testingAuthenticationManager
@@ -68,7 +57,11 @@
     
     <bean id="clientDetailsUserService"
         class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService"
-        c:clientDetailsService-ref="clientDetailsService" />
+        c:clientDetailsService-ref="casClientDetailsService" />
+        
+    <bean id="casClientDetailsService"
+        class="org.jasig.cas.support.oauth.CasClientDetailsService" 
+        c:servicesManager-ref="servicesManager" />
         
     <sec:authentication-manager id="testingAuthenticationManager">
         <sec:authentication-provider ref="casServerAuthenticationProvider" />
@@ -110,10 +103,10 @@
 		       <bean class="org.springframework.web.servlet.mvc.ParameterizableViewController"
 			       p:viewName="oauthConfirmView" />
 	        </entry>
-<!-- 	        <entry key="/oauth2.0/error"> -->
-<!-- 	           TODO -->
-<!-- 	           <null/> -->
-<!-- 	        </entry> -->
+	        <entry key="/oauth2.0/error">
+               <bean class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+                   p:viewName="oauthErrorView" />
+	        </entry>
 		</map></property>
 	</bean>
 	
@@ -124,7 +117,7 @@
         to map the endpoint urls -->
     <!-- TODO move the configuration to a properties file -->
     <oauth2:authorization-server
-        client-details-service-ref="clientDetailsService" token-services-ref="tokenServices"
+        client-details-service-ref="casClientDetailsService" token-services-ref="tokenServices"
         authorization-endpoint-url="/authorize" token-endpoint-url="/accessToken"
         user-approval-page="forward:confirm_access"
         error-page="forward:error">
@@ -133,11 +126,6 @@
         <oauth2:password 
             authentication-manager-ref="testingAuthenticationManager" />
     </oauth2:authorization-server>
-    
-    <oauth2:client-details-service id="clientDetailsService">
-        <oauth2:client client-id="oauth2-client" secret="oauth2-secret"
-            authorized-grant-types="authorization_code,password,refresh_token" />
-    </oauth2:client-details-service>
     
     <oauth2:resource-server
         id="oauth2ProviderFilter"

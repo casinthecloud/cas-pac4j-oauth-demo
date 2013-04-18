@@ -156,6 +156,7 @@
         class="org.jasig.cas.services.InMemoryServiceRegistryDaoImpl">
             <property name="registeredServices">
                 <list>
+                
        <bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="0" />
         <property name="name" value="HTTP" />
@@ -173,9 +174,18 @@
 
       <bean class="org.jasig.cas.services.RegisteredServiceImpl">
         <property name="id" value="2" />
-        <property name="name" value="another service" />
-        <property name="description" value="desc" />
-        <property name="serviceId" value="http://localhost:8080/cas/login?client_name=CasClient" />
+        <property name="name" value="oauth2-client" />
+        <property name="description" value="oauth2-secret" />
+        <property name="theme" value="my great webapp for OAuth" />
+        <property name="serviceId" value="http://localhost:8080/cas/login" />
+      </bean>
+
+      <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+        <property name="id" value="3" />
+        <property name="name" value="sting-mobile-client" />
+        <property name="description" value="sting-mobile-secret" />
+        <property name="theme" value="my great webapp for OAuth" />
+        <property name="serviceId" value="http://localhost:8080/cas/login" />
       </bean>
 
                     <!--

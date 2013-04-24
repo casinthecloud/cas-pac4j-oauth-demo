@@ -58,6 +58,11 @@
 				<artifactId>cas-server-support-pac4j</artifactId>
 				<version>${cas.version}</version>
 			</dependency>
+            <dependency>
+                <groupId>org.jasig.cas</groupId>
+                <artifactId>cas-server-support-saml</artifactId>
+                <version>${cas.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>org.pac4j</groupId>
 				<artifactId>pac4j-oauth</artifactId>
@@ -107,6 +112,6 @@
 
 	<properties>
 		<cas.version>4.0.0-SNAPSHOT</cas.version>
-		<pac4j.version>1.4.0-SNAPSHOT</pac4j.version>
+		<pac4j.version>1.4.0</pac4j.version>
 	</properties>
 </project>

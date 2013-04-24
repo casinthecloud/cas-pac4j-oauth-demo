@@ -50,6 +50,7 @@
       <list>
         <value>${cas.viewResolver.basename}</value>
         <value>protocol_views</value>
+        <value>saml_views</value>
       </list>
     </property>
   </bean>
@@ -76,6 +77,7 @@
       <props>
         <prop key="/logout">logoutController</prop>
         <prop key="/serviceValidate">serviceValidateController</prop>
+        <prop key="/samlValidate">samlValidateController</prop>
         <prop key="/validate">legacyValidateController</prop>
         <prop key="/proxy">proxyController</prop>
         <prop key="/proxyValidate">proxyValidateController</prop>
@@ -106,6 +108,14 @@
     p:ticketRegistry-ref="ticketRegistry"
     p:timeout="7200" />
 
+<bean id="samlValidateController" class="org.jasig.cas.web.ServiceValidateController"
+  p:validationSpecificationClass="org.jasig.cas.validation.Cas20WithoutProxyingValidationSpecification"
+  p:centralAuthenticationService-ref="centralAuthenticationService"
+  p:proxyHandler-ref="proxy20Handler"
+  p:argumentExtractor-ref="samlArgumentExtractor"
+  p:successView="casSamlServiceSuccessView"
+  p:failureView="casSamlServiceFailureView"/>
+  
   <bean id="passThroughController" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
 
   <bean

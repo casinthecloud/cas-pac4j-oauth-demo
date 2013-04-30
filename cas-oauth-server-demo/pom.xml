@@ -24,6 +24,12 @@
         <dependency>
             <groupId>org.jasig.cas</groupId>
             <artifactId>cas-server-support-oauth</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>spring-web</artifactId>
+            		<groupId>org.springframework</groupId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jasig.cas</groupId>

@@ -187,6 +187,20 @@
         <property name="theme" value="my great webapp for OAuth" />
         <property name="serviceId" value="http://localhost:8080/cas/login" />
       </bean>
+      
+       <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+        <property name="id" value="4" />
+        <property name="name" value="OAuth2.0 Authorize" />
+        <property name="description" value="Authorization Endpoint" />
+        <property name="serviceId" value="/oauth2.0/authorize" />
+      </bean>
+      
+       <bean class="org.jasig.cas.services.RegisteredServiceImpl">
+        <property name="id" value="5" />
+        <property name="name" value="OAuth2.0 Access Token" />
+        <property name="description" value="Access Token Endpoint" />
+        <property name="serviceId" value="/oauth2.0/**" />
+      </bean>
 
                     <!--
                     Use the following definition instead of the above to further restrict access

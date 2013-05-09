@@ -192,7 +192,7 @@
     <!-- TODO hard-coded endpoint -->
     <bean id="casEntryPoint"
         class="org.springframework.security.cas.web.CasAuthenticationEntryPoint"
-        p:login-url="/cas-oauth-server-demo/login"
+        p:login-url="/cas2/login"
         autowire="byType"/>
         
     <!-- Used by the cas client to populate the authentication headers with required information that's not populated by the 
@@ -208,7 +208,7 @@
         </property>
         <property name="ticketValidator">
             <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"
-                c:cas-server-url-prefix="http://localhost:8080/cas-oauth-server-demo/" />
+                c:cas-server-url-prefix="http://localhost:8080/cas2/" />
         </property>
     </bean>
         

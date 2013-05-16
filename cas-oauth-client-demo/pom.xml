@@ -67,7 +67,7 @@
                     </webApp>
                     <contextHandlers>
                         <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
-                            <war>${basedir}/../cas-oauth-server-demo/target/cas-oauth-server-demo.war</war>
+                            <war>${basedir}/../cas-oauth-server-demo/target/cas.war</war>
                             <contextPath>/cas2</contextPath>
                         </contextHandler>
                     </contextHandlers>

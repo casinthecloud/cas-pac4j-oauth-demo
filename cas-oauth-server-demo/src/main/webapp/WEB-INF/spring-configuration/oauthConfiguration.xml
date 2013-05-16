@@ -109,8 +109,8 @@
     <mvc:annotation-driven /> 
 	
 	<bean id="casServerAuthenticationProvider"
-	   class="org.jasig.cas.support.spring.CasServerAuthenticationProvider" 
-	   autowire="constructor" />
+        class="org.jasig.cas.support.oauth.CasServerAuthenticationProvider" 
+        autowire="constructor" />
 
 	<!-- Simple convenience class so we can use Spring to autowire this bean 
 		every time instead of repeating the SpEL syntax. The exception to this is 
@@ -134,10 +134,6 @@
         </property>
     </bean>
     
-<!--     <bean class="com.fasterxml.jackson.databind.ObjectMapper" /> -->
-    
-<!--     <context:component-scan base-package="org.jasig.cas.support.oauth.endpoint" /> -->
-
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"
 	    p:always-use-full-path="true">
 	    <property name="interceptors"><array>
@@ -180,7 +176,8 @@
         token-services-ref="tokenServices"/>
         
     <!-- The following configuration is for protecting the oauth endpoints with CAS -->
-    <bean class="org.springframework.security.cas.ServiceProperties"
+    <bean id="serviceProperties"
+        class="org.springframework.security.cas.ServiceProperties"
         p:service="/oauth2.0/j_spring_cas_security_check" />
     
     <!-- Let's just see what happens when we supply the server-side authentication manager to the bean here. -->
@@ -200,17 +197,27 @@
     <bean id="casClientAuthenticationProvider"
         class="org.springframework.security.cas.authentication.CasAuthenticationProvider"
         p:key="an_id_for_this_auth_provider_only"
-        autowire="byType">
+        p:service-properties-ref="serviceProperties">
         <property name="authenticationUserDetailsService">
 <!--             We can't really use the clientDetailsUserService here because it describes the *client* -->
             <bean class="org.springframework.security.core.userdetails.UserDetailsByNameServiceWrapper"
-                c:user-details-service-ref="clientDetailsUserService"/>
+                c:user-details-service-ref="testUserService" />
+                <!--c:user-details-service-ref="clientDetailsUserService"/>-->
         </property>
         <property name="ticketValidator">
             <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator"
                 c:cas-server-url-prefix="http://localhost:8080/cas2/" />
         </property>
     </bean>
-        
+
+    <!-- OAuth 2.0 models authentication *and* authorization. Here is where we
+         define the authorities for each user that is authenticated against
+         CAS.  Note that the password field is not used and that CAS handles
+         all username/password matching for us-->
+    <sec:user-service id="testUserService">
+        <sec:user name="leleuj@gmail.com" password="not used" authorities="ROLE_USER" />
+        <sec:user name="joemccall@intrepid-networks.com" password="not used" authorities="ROLE_USER" />
+    </sec:user-service>
+
 
 </beans>

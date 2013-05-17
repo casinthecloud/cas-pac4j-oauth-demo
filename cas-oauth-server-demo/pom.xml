@@ -24,6 +24,23 @@
         <dependency>
             <groupId>org.jasig.cas</groupId>
             <artifactId>cas-server-support-oauth</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>spring-web</artifactId>
+            		<groupId>org.springframework</groupId>
+            	</exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-cas</artifactId>
+            <version>3.1.4.RELEASE</version>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>spring-web</artifactId>
+            		<groupId>org.springframework</groupId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jasig.cas</groupId>
@@ -33,6 +50,12 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>cas</warName>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

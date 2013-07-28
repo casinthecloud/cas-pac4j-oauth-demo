@@ -112,6 +112,6 @@
 
 	<properties>
 		<cas.version>4.0.0-RC2-SNAPSHOT</cas.version>
-		<pac4j.version>1.4.1-SNAPSHOT</pac4j.version>
+		<pac4j.version>1.4.2-SNAPSHOT</pac4j.version>
 	</properties>
 </project>

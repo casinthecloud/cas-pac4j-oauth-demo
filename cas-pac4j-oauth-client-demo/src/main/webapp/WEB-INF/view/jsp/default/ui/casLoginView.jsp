@@ -149,7 +149,3 @@
 <br />
 <a href="${CasClientUrl}">Authenticate with another CAS server using CAS protocol</a><br />  
 <br />
-<form action="${MyOpenIdClientUrl}" method="POST">
-  <input type="text" name="openIdUser" value="http://xxx.myopenid.com/" />
-  <input type="submit" value="Authenticate with myopenid.com" />
-</form>

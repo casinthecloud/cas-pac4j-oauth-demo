@@ -58,8 +58,6 @@
         </property-->
     </bean>
 
-    <bean id="myopenid1" class="org.pac4j.openid.client.MyOpenIdClient" />
-
     <bean id="clients" class="org.pac4j.core.client.Clients">
         <property name="callbackUrl" value="http://localhost:8080/cas/login" />
         <property name="clients">
@@ -68,7 +66,6 @@
                 <ref bean="twitter1" />
                 <ref bean="caswrapper1" />
                 <ref bean="cas1" />
-                <ref bean="myopenid1" />
             </list>
         </property>
     </bean>

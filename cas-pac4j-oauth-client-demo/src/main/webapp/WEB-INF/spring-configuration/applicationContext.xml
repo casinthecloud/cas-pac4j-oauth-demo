@@ -81,7 +81,7 @@
     </bean>
     <!-- #DEMO# -->
 
-    <!--
+<!--
       Including this aspectj-autoproxy element will cause spring to automatically
       create proxies around any beans defined in this file that match the pointcuts
       of any aspects defined in this file.
@@ -98,10 +98,10 @@
     <!-- 
         Message source for this context, loaded from localized "messages_xx" files.]
         
-        Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
-        will be able to revert back to the default language bundle that is "messages.properties"
-        and will not rely on the JVM default locale which introduces the side effect of rendering
-        the UI in the JVM locale by default.
+    	Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
+    	will be able to revert back to the default language bundle that is "messages.properties"
+    	and will not rely on the JVM default locale which introduces the side effect of rendering
+    	the UI in the JVM locale by default.
       
         Also, explicitly set the default encoding to be UTF-8 when parsing message bundles.
         The default, if not set, is none which forces ISO-8859-1 of java.util.ResourceBundle.
@@ -128,14 +128,14 @@
           p:targetObject-ref="servicesManager"
           p:targetMethod="reload"/>
 
-    <bean id="periodicServiceRegistryReloaderTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean"
+    <bean id="periodicServiceRegistryReloaderTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
           p:jobDetail-ref="serviceRegistryReloaderJobDetail"
           p:startDelay="${service.registry.quartz.reloader.startDelay:120000}"
           p:repeatInterval="${service.registry.quartz.reloader.repeatInterval:120000}"/>
 
     <bean id="httpClient" class="org.jasig.cas.util.SimpleHttpClient"
-          p:readTimeout="5000"
-          p:connectionTimeout="5000"/>
+          p:readTimeout="${http.client.read.timeout:5000}"
+          p:connectionTimeout="${http.client.connection.timeout:5000}"/>
 
     <bean id="noRedirectHttpClient" class="org.jasig.cas.util.SimpleHttpClient" parent="httpClient"
           p:followRedirects="false" />
@@ -149,7 +149,7 @@
           c:httpClient-ref="noRedirectHttpClient"
           c:logoutMessageBuilder-ref="logoutBuilder"
           p:singleLogoutCallbacksDisabled="${slo.callbacks.disabled:false}" 
-          p:issueAsynchronousCallbacks="${slo.callbacks.asynchronous:true}"/>
+          p:asynchronous="${slo.callbacks.asynchronous:true}"/>
 
     <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator" />
     
@@ -186,3 +186,4 @@
     <bean id="scheduler" class="org.jasig.cas.util.AutowiringSchedulerFactoryBean"/>
             
 </beans>
+

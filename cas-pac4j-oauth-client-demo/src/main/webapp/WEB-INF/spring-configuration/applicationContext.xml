@@ -49,11 +49,11 @@
     <bean id="caswrapper1" class="org.pac4j.oauth.client.CasOAuthWrapperClient">
         <property name="key" value="this_is_the_key" />
         <property name="secret" value="this_is_the_secret" />
-        <property name="casOAuthUrl" value="http://localhost:8081/cas2/oauth2.0" />
+        <property name="casOAuthUrl" value="http://localhost:8080/cas2/oauth2.0" />
     </bean>
 
     <bean id="cas1" class="org.pac4j.cas.client.CasClient">
-        <property name="casLoginUrl" value="http://localhost:8081/cas2/login" />
+        <property name="casLoginUrl" value="http://localhost:8080/cas2/login" />
         <!-- property name="casProtocol">
             <util:constant static-field="org.pac4j.cas.client.CasClient.CasProtocol.SAML" />
         </property-->

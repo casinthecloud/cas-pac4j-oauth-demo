@@ -23,15 +23,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <description>
         This is the main Spring configuration file with some of the main "core" classes defined. You shouldn't really
         modify this unless you
         know what you're doing!
     </description>
-    
+
     <!-- #DEMO# -->
     <bean id="facebook1" class="org.pac4j.oauth.client.FacebookClient">
         <property name="key" value="153186971478756" />
@@ -96,9 +98,15 @@
         Also, explicitly set the default encoding to be UTF-8 when parsing message bundles.
         The default, if not set, is none which forces ISO-8859-1 of java.util.ResourceBundle.
     -->
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
-          p:basename="classpath:messages" p:fallbackToSystemLocale="false" p:defaultEncoding="UTF-8" p:cacheSeconds="180" />
+    <bean id="messageSource" class="org.jasig.cas.web.view.CasReloadableMessageBundle"
+          p:basenames-ref="basenames" p:fallbackToSystemLocale="false" p:defaultEncoding="UTF-8"
+          p:cacheSeconds="180" p:useCodeAsDefaultMessage="true" />
 
+    <util:list id="basenames">
+        <value>classpath:custom_messages</value>
+        <value>classpath:messages</value>
+    </util:list>
+    
     <bean id="servicesManager" class="org.jasig.cas.services.DefaultServicesManagerImpl"
         c:serviceRegistryDao-ref="serviceRegistryDao" />
 
@@ -128,12 +136,14 @@
           class="org.jasig.cas.authentication.principal.ShibbolethCompatiblePersistentIdGenerator"
           p:salt="casrocks"/>
 
-    <bean id="logoutManager" class="org.jasig.cas.logout.LogoutManagerImpl">
-        <constructor-arg index="0" ref="servicesManager"/>
-        <constructor-arg index="1" ref="noRedirectHttpClient"/>
-        <property name="disableSingleSignOut" value="${slo.callbacks.disabled:false}" />         
-    </bean>
+    <bean id="logoutManager" class="org.jasig.cas.logout.LogoutManagerImpl"
+          c:servicesManager-ref="servicesManager"
+          c:httpClient-ref="noRedirectHttpClient"
+          c:logoutMessageBuilder-ref="logoutBuilder"
+          p:disableSingleSignOut="${slo.callbacks.disabled:false}" />
 
+    <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator" />
+    
     <!-- CentralAuthenticationService -->
     <bean id="centralAuthenticationService" class="org.jasig.cas.CentralAuthenticationServiceImpl">
         <constructor-arg index="0" ref="ticketRegistry"/>

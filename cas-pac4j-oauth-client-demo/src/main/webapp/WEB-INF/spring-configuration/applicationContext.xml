@@ -23,9 +23,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <description>
@@ -33,7 +35,14 @@
         modify this unless you know what you're doing!
     </description>
 
-    <!-- #DEMO# -->
+    <!--
+      Including this aspectj-autoproxy element will cause spring to automatically
+      create proxies around any beans defined in this file that match the pointcuts
+      of any aspects defined in this file.
+    -->
+    <aop:aspectj-autoproxy/>
+
+   <!-- #DEMO# -->
     <bean id="facebook1" class="org.pac4j.oauth.client.FacebookClient">
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
@@ -80,20 +89,6 @@
     </bean>
     <!-- #DEMO# -->
 
-    <!--
-      Including this aspectj-autoproxy element will cause spring to automatically
-      create proxies around any beans defined in this file that match the pointcuts
-      of any aspects defined in this file.
-    -->
-    <aop:aspectj-autoproxy/>
-
-    <!--
-      Declare the TimingAspect that we want to weave into the other beans
-      defined in this config file.
-    -->
-    <bean id="timingAspect" class="org.perf4j.log4j.aop.TimingAspect"/>
-
-
     <!-- 
         Message source for this context, loaded from localized "messages_xx" files.]
         
@@ -113,9 +108,9 @@
         <value>classpath:custom_messages</value>
         <value>classpath:messages</value>
     </util:list>
-
+    
     <bean id="servicesManager" class="org.jasig.cas.services.DefaultServicesManagerImpl"
-          c:serviceRegistryDao-ref="serviceRegistryDao" />
+        c:serviceRegistryDao-ref="serviceRegistryDao" />
 
     <!--
         Job to periodically reload services from service registry.
@@ -135,28 +130,31 @@
 
     <!-- HTTP clients -->
     <bean id="httpClient" class="org.jasig.cas.util.http.SimpleHttpClientFactoryBean" abstract="true"
-          p:readTimeout="${http.client.read.timeout:5000}"
-          p:connectionTimeout="${http.client.connection.timeout:5000}"/>
+        p:readTimeout="${http.client.read.timeout:5000}"
+        p:connectionTimeout="${http.client.connection.timeout:5000}"/>
 
     <bean id="noRedirectHttpClient" class="org.jasig.cas.util.http.SimpleHttpClientFactoryBean" parent="httpClient"
-          p:redirectsEnabled="false" p:circularRedirectsAllowed="false" />
+        p:redirectsEnabled="false" p:circularRedirectsAllowed="false" />
 
     <bean id="trustStoreSslSocketFactory" class="org.jasig.cas.authentication.FileTrustStoreSslSocketFactory"
-          c:trustStoreFile="${http.client.truststore.file:classpath:truststore.jks}"
-          c:trustStorePassword="${http.client.truststore.psw:changeit}" />
+        c:trustStoreFile="${http.client.truststore.file:classpath:truststore.jks}"
+        c:trustStorePassword="${http.client.truststore.psw:changeit}" />
 
     <bean id="supportsTrustStoreSslSocketFactoryHttpClient" class="org.jasig.cas.util.http.SimpleHttpClientFactoryBean"
-          parent="httpClient" p:sslSocketFactory-ref="trustStoreSslSocketFactory" />
+         parent="httpClient" p:sslSocketFactory-ref="trustStoreSslSocketFactory" />
 
 
     <bean id="logoutManager" class="org.jasig.cas.logout.LogoutManagerImpl"
           c:servicesManager-ref="servicesManager"
           c:httpClient-ref="noRedirectHttpClient"
           c:logoutMessageBuilder-ref="logoutBuilder"
-          p:singleLogoutCallbacksDisabled="${slo.callbacks.disabled:false}"
+          p:singleLogoutCallbacksDisabled="${slo.callbacks.disabled:false}" 
           p:asynchronous="${slo.callbacks.asynchronous:true}"/>
 
     <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator" />
+
+    <bean id="principalFactory" class="org.jasig.cas.authentication.principal.DefaultPrincipalFactory"
+            scope="prototype"/>
 
     <!-- CentralAuthenticationService -->
     <bean id="centralAuthenticationService" class="org.jasig.cas.CentralAuthenticationServiceImpl"
@@ -168,7 +166,8 @@
           c:ticketGrantingTicketExpirationPolicy-ref="grantingTicketExpirationPolicy"
           c:serviceTicketExpirationPolicy-ref="serviceTicketExpirationPolicy"
           c:servicesManager-ref="servicesManager"
-          c:logoutManager-ref="logoutManager" />
+          c:logoutManager-ref="logoutManager"
+          p:principalFactory-ref="principalFactory"/>
 
     <bean id="proxy10Handler" class="org.jasig.cas.ticket.proxy.support.Cas10ProxyHandler"/>
 
@@ -181,9 +180,9 @@
           class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
 
     <bean id="validationAnnotationBeanPostProcessor" class="org.jasig.cas.util.CustomBeanValidationPostProcessor"
-          p:afterInitialization="true" />
+            p:afterInitialization="true" />
 
     <!-- The scheduler bean wires up any triggers that define scheduled tasks -->
     <bean id="scheduler" class="org.jasig.cas.util.AutowiringSchedulerFactoryBean"/>
-
+            
 </beans>

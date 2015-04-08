@@ -47,7 +47,7 @@
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
         <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events,user_groups,user_actions.music" />
-        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture" />
+        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture" />
     </bean>
 
     <bean id="twitter1" class="org.pac4j.oauth.client.TwitterClient">

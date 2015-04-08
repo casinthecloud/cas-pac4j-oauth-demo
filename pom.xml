@@ -134,6 +134,6 @@
 
 	<properties>
 		<cas.version>4.1.0-SNAPSHOT</cas.version>
-		<pac4j.version>1.6.0</pac4j.version>
+		<pac4j.version>1.7.0</pac4j.version>
 	</properties>
 </project>

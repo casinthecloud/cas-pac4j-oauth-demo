@@ -68,12 +68,14 @@
         </property-->
     </bean>
 
-    <bean id="saml1" class="org.pac4j.saml.client.Saml2Client">
-        <property name="keystorePath" value="resource:samlKeystore.jks" />
-        <property name="keystorePassword" value="pac4j-demo-passwd" />
-        <property name="privateKeyPassword" value="pac4j-demo-passwd" />
-        <property name="idpMetadataPath" value="resource:testshib-providers.xml" />
-    </bean>
+    <bean id="samlConfig" class="org.pac4j.saml.client.SAML2ClientConfiguration"
+          c:keystorePassword="pac4j-demo-passwd"
+          c:privateKeyPassword="pac4j-demo-passwd"
+          c:keystorePath="resource:samlKeystore.jks"
+          c:identityProviderMetadataPath="resource:testshib-providers.xml" />
+
+    <bean id="saml1" class="org.pac4j.saml.client.SAML2Client"
+        c:configuration-ref="samlConfig" />
 
     <bean id="clients" class="org.pac4j.core.client.Clients">
         <property name="callbackUrl" value="http://localhost:8080/cas/login" />
@@ -92,10 +94,10 @@
     <!-- 
         Message source for this context, loaded from localized "messages_xx" files.]
         
-    	Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
-    	will be able to revert back to the default language bundle that is "messages.properties"
-    	and will not rely on the JVM default locale which introduces the side effect of rendering
-    	the UI in the JVM locale by default.
+        Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
+        will be able to revert back to the default language bundle that is "messages.properties"
+        and will not rely on the JVM default locale which introduces the side effect of rendering
+        the UI in the JVM locale by default.
       
         Also, explicitly set the default encoding to be UTF-8 when parsing message bundles.
         The default, if not set, is none which forces ISO-8859-1 of java.util.ResourceBundle.

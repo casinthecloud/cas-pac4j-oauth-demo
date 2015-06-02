@@ -180,5 +180,5 @@
 <br />
 <a href="${CasClientUrl}">Authenticate with another CAS server using CAS protocol</a><br />  
 <br />
-<a href="${Saml2ClientUrl}">Authenticate with a SAML provider</a><br />  
+<a href="${SAML2ClientUrl}">Authenticate with a SAML provider</a><br />
 <br />

@@ -4,3 +4,7 @@
 target/
 test-output/
 bin/
+*.iml
+*.log
+overlays
+.idea

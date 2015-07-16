@@ -39,7 +39,7 @@
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
         <property name="scope" value="email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events,user_groups,user_actions.music" />
-        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,username,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture" />        
+        <property name="fields" value="id,name,first_name,middle_name,last_name,gender,locale,languages,link,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture" />
     </bean>
 
     <bean id="twitter1" class="org.pac4j.oauth.client.TwitterClient">
@@ -87,14 +87,14 @@
     <bean id="timingAspect" class="org.perf4j.log4j.aop.TimingAspect"/>
 
 
-    <!-- 
+    <!--
         Message source for this context, loaded from localized "messages_xx" files.]
-        
+
     	Disable the fallback mechanism to the system/JVM locale. By turning off this behavior, CAS
     	will be able to revert back to the default language bundle that is "messages.properties"
     	and will not rely on the JVM default locale which introduces the side effect of rendering
     	the UI in the JVM locale by default.
-      
+
         Also, explicitly set the default encoding to be UTF-8 when parsing message bundles.
         The default, if not set, is none which forces ISO-8859-1 of java.util.ResourceBundle.
     -->
@@ -106,7 +106,7 @@
         <value>classpath:custom_messages</value>
         <value>classpath:messages</value>
     </util:list>
-    
+
     <bean id="servicesManager" class="org.jasig.cas.services.DefaultServicesManagerImpl"
         c:serviceRegistryDao-ref="serviceRegistryDao" />
 
@@ -143,7 +143,7 @@
           p:disableSingleSignOut="${slo.callbacks.disabled:false}" />
 
     <bean id="logoutBuilder" class="org.jasig.cas.logout.SamlCompliantLogoutMessageCreator" />
-    
+
     <!-- CentralAuthenticationService -->
     <bean id="centralAuthenticationService" class="org.jasig.cas.CentralAuthenticationServiceImpl">
         <constructor-arg index="0" ref="ticketRegistry"/>
@@ -175,5 +175,5 @@
 
     <!-- The scheduler bean wires up any triggers that define scheduled tasks -->
     <bean id="scheduler" class="org.jasig.cas.util.AutowiringSchedulerFactoryBean"/>
-            
+
 </beans>

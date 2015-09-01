@@ -1,0 +1,7 @@
+{
+  "@class" : "org.jasig.cas.support.oauth.services.OAuthCallbackAuthorizeService",
+  "serviceId" : "http://localhost:8080/cas2/oauth2.0/callbackAuthorize",
+  "name" : "HTTP",
+  "id" : 0,
+  "description" : "internal oauth wrapper controller"
+}

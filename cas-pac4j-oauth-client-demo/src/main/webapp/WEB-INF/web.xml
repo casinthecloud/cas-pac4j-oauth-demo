@@ -22,8 +22,10 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-         metadata-complete="true" version="3.0">
-    <display-name>Central Authentication System (CAS) 4.1.0-SNAPSHOT</display-name>
+         version="3.0" metadata-complete="true">
+    <display-name>Central Authentication System (CAS) 4.2.0-SNAPSHOT</display-name>
+
+    <absolute-ordering/>
 
     <context-param>
         <param-name>isLog4jAutoInitializationDisabled</param-name>
@@ -69,6 +71,15 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>responseHeadersSecurityFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>responseHeadersSecurityFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
     </filter>
@@ -110,7 +121,8 @@
         </servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/cas-servlet.xml, /WEB-INF/cas-servlet-*.xml</param-value>
+            <!-- Load the child application context. Start with the default, then modules, then overlays. -->
+            <param-value>/WEB-INF/cas-servlet.xml,classpath*:/META-INF/cas-servlet-*.xml,/WEB-INF/cas-servlet-*.xml</param-value>
         </init-param>
         <init-param>
             <param-name>publishContext</param-name>
@@ -196,6 +208,11 @@
 
     <servlet-mapping>
         <servlet-name>cas</servlet-name>
+        <url-pattern>/statistics/ssosessions/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cas</servlet-name>
         <url-pattern>/statistics/ssosessions</url-pattern>
     </servlet-mapping>
 
@@ -233,13 +250,6 @@
         <servlet-name>cas</servlet-name>
         <url-pattern>/v1/*</url-pattern>
     </servlet-mapping>
-
-    <!--
-    <servlet-mapping>
-        <servlet-name>cas</servlet-name>
-        <url-pattern>/samlValidate</url-pattern>
-    </servlet-mapping>
-    -->
 
     <session-config>
         <!-- Default to 5 minute session timeouts -->

@@ -142,7 +142,7 @@
     </modules>
 
     <properties>
-        <cas.version>4.1.0</cas.version>
+        <cas.version>4.2.0-SNAPSHOT</cas.version>
         <pac4j.version>1.7.1</pac4j.version>
     </properties>
 </project>

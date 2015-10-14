@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.leleuj</groupId>
     <artifactId>cas-pac4j-oauth-demo</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>4.2.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>CAS Pac4J / OAuth demo</name>
     <description>CAS Pac4J / OAuth demo</description>

@@ -4,7 +4,6 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <!-- #DEMO# -->
     <bean id="facebook1" class="org.pac4j.oauth.client.FacebookClient">
         <property name="key" value="153186971478756" />
         <property name="secret" value="4e72f0233e6b4594e49ca5eaa59660a4" />
@@ -51,11 +50,5 @@
             </list>
         </property>
     </bean>
-
-    <bean id="clientAction" class="org.jasig.cas.support.pac4j.web.flow.ClientAction">
-        <constructor-arg index="0" ref="centralAuthenticationService"/>
-        <constructor-arg index="1" ref="clients"/>
-    </bean>
-    <!-- #DEMO# -->
 
 </beans>

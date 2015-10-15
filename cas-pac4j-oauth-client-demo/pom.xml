@@ -78,6 +78,10 @@
         </dependency>
         <dependency>
             <groupId>org.pac4j</groupId>
+            <artifactId>pac4j-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.pac4j</groupId>
             <artifactId>pac4j-saml</artifactId>
             <exclusions>
                 <exclusion>
@@ -91,10 +95,6 @@
                 <exclusion>
                     <artifactId>joda-time</artifactId>
                     <groupId>joda-time</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>xmlsec</artifactId>
-                    <groupId>org.apache.santuario</groupId>
                 </exclusion>
                 <exclusion>
                     <artifactId>bcprov-jdk15on</artifactId>

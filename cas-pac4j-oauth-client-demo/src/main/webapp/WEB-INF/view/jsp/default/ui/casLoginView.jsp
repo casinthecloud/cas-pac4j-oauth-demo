@@ -202,6 +202,7 @@
 
 <jsp:directive.include file="includes/bottom.jsp" />
 
+
 <!-- DEMO -->
 <a href="${FacebookClientUrl}">Authenticate with Facebook</a> <br />
 <br />

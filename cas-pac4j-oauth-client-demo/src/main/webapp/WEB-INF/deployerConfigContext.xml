@@ -60,8 +60,10 @@
           p:backingMap-ref="attrRepoBackingMap" />
 
     <!-- #DEMO# -->
-    <bean id="primaryAuthenticationHandler" class="org.jasig.cas.support.pac4j.authentication.handler.support.ClientAuthenticationHandler">
-        <constructor-arg index="0" ref="clients"/>
+    <bean id="simpleAuthenticator" class="org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator" />
+
+    <bean id="primaryAuthenticationHandler" class="org.jasig.cas.support.pac4j.authentication.handler.support.UsernamePasswordWrapperAuthenticationHandler">
+        <property name="authenticator" ref="simpleAuthenticator" />
     </bean>
     <!-- #DEMO# -->
 

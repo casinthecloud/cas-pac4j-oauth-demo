@@ -61,7 +61,14 @@
 
     <!-- #DEMO# -->
     <bean id="primaryAuthenticationHandler"
-          class="org.jasig.cas.authentication.handler.support.SimpleTestUsernamePasswordAuthenticationHandler" />
+          class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
+        <property name="users">
+            <map>
+                <entry key="jleleu" value="jleleu"/>
+                <entry key="leleuj" value="leleuj"/>
+            </map>
+        </property>
+    </bean>
     <!-- #DEMO# -->
 
     <util:map id="attrRepoBackingMap">

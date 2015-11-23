@@ -40,16 +40,4 @@
     <bean id="saml1" class="org.pac4j.saml.client.SAML2Client"
           c:configuration-ref="samlConfig" />
 
-    <bean id="clients" class="org.pac4j.core.client.Clients">
-        <property name="clients">
-            <list>
-                <!--ref bean="facebook1" />
-                <ref bean="twitter1" /-->
-                <ref bean="caswrapper1" />
-                <ref bean="cas1" />
-                <ref bean="saml1" />
-            </list>
-        </property>
-    </bean>
-
 </beans>

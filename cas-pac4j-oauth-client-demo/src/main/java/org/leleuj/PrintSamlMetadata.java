@@ -9,7 +9,7 @@ public class PrintSamlMetadata {
 
     public static void main(final String[] args) {
         final SAML2Client client = getClient();
-        client.init();
+        client.init(null);
 
         // generate pac4j SAML2 Service Provider metadata to import on Identity Provider side
         final String spMetadata = client.getServiceProviderMetadataResolver().getMetadata();

@@ -28,7 +28,7 @@ public class PrintSamlMetadata {
         cfg.setServiceProviderMetadataPath(new File("target", "sp-metadata.xml").getAbsolutePath());
 
         final SAML2Client saml2Client = new SAML2Client(cfg);
-        saml2Client.setCallbackUrl("http://localhost:8080/cas/login?client_name=Saml2Client");
+        saml2Client.setCallbackUrl("http://localhost:8080/cas/login?client_name=SAML2Client");
         return saml2Client;
     }
 }

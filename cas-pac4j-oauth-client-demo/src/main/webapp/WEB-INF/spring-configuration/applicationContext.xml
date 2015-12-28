@@ -71,7 +71,9 @@
           c:keystorePassword="pac4j-demo-passwd"
           c:privateKeyPassword="pac4j-demo-passwd"
           c:keystorePath="resource:samlKeystore.jks"
-          c:identityProviderMetadataPath="resource:testshib-providers.xml" />
+          c:identityProviderMetadataPath="resource:testshib-providers.xml"
+          c:identityProviderEntityId="https://idp.testshib.org/idp/shibboleth"
+          c:serviceProviderEntityId="urn:mace:saml:pac4j.org"/>
 
     <bean id="saml1" class="org.pac4j.saml.client.SAML2Client"
           c:configuration-ref="samlConfig" />
@@ -161,7 +163,6 @@
     <!-- CentralAuthenticationService -->
     <bean id="centralAuthenticationService" class="org.jasig.cas.CentralAuthenticationServiceImpl"
           c:ticketRegistry-ref="ticketRegistry"
-          c:serviceTicketRegistry="#{null}"
           c:uniqueTicketIdGeneratorsForService-ref="uniqueIdGeneratorsMap"
           c:authenticationManager-ref="authenticationManager"
           c:ticketGrantingTicketUniqueTicketIdGenerator-ref="ticketGrantingTicketUniqueIdGenerator"

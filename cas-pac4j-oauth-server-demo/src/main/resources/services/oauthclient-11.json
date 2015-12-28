@@ -1,0 +1,9 @@
+{
+  "@class" : "org.jasig.cas.support.oauth.services.OAuthRegisteredService",
+  "serviceId" : "http://localhost:9000/callback\\?client_name=CasOAuthWrapperClient",
+  "name" : "my great webapp for OAuth",
+  "id" : 11,
+  "description" : "The greatest application ever!",
+  "clientId" : "this_is_the_key",
+  "clientSecret" : "this_is_the_secret"
+}

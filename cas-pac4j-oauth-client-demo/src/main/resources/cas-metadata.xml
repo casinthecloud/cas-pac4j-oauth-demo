@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" entityID="http://localhost:8080/cas/login?client_name=Saml2Client">
-    <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+<md:EntityDescriptor ID="_ahjloaxugunmlieoc5lh9i49nxg6pnnr4cw2fhu" entityID="urn:mace:saml:pac4j.org" validUntil="2035-12-28T14:32:08.619Z"
+                     xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
+    <md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+    </md:Extensions>
+    <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="true"
+                        protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+        <md:Extensions xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init">
+            <init:RequestInitiator Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="http://localhost:8080/cas/login?client_name=SAML2Client"/>
+        </md:Extensions>
         <md:KeyDescriptor use="signing">
             <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
                 <ds:X509Data>
@@ -51,6 +68,6 @@
         <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
         <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
         <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
-        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/cas/login?client_name=Saml2Client" index="0" />
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="http://localhost:8080/cas/login?client_name=SAML2Client" index="0"/>
     </md:SPSSODescriptor>
 </md:EntityDescriptor>

@@ -6,7 +6,7 @@
   "description" : "The greatest application ever!",
   "clientId" : "this_is_the_key2",
   "clientSecret" : "this_is_the_secret2",
-  "bypassApprovalPrompt": true,
+  "bypassApprovalPrompt": false,
   "proxyPolicy" : {
     "@class" : "org.jasig.cas.services.RefuseRegisteredServiceProxyPolicy"
   },

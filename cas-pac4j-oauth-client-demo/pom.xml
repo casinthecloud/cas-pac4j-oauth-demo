@@ -168,11 +168,17 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>${jetty.version}</version>
                 <configuration>
+                    <systemProperties>
+                        <systemProperty>
+                            <name>org.eclipse.jetty.annotations.maxWait</name>
+                            <value>120</value>
+                        </systemProperty>
+                    </systemProperties>
                     <webApp>
                         <contextPath>/cas</contextPath>
                     </webApp>
                     <contextHandlers>
-                        <contextHandler implementation="org.eclipse.jetty.webapp.WebAppContext">
+                        <contextHandler implementation="org.eclipse.jetty.maven.plugin.JettyWebAppContext">
                             <war>${basedir}/../cas-pac4j-oauth-server-demo/target/cas-pac4j-oauth-server-demo.war</war>
                             <contextPath>/cas2</contextPath>
                         </contextHandler>
@@ -187,7 +193,6 @@
     </build>
 
     <properties>
-        <jetty.version>9.1.4.v20140401</jetty.version>
-        <!--jetty.version>9.3.5.v20151012</jetty.version-->
+        <jetty.version>9.3.7.v20160115</jetty.version>
     </properties>
 </project>

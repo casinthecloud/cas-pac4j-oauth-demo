@@ -7,7 +7,7 @@
   "clientId" : "this_is_the_key2",
   "clientSecret" : "this_is_the_secret2",
   "bypassApprovalPrompt": false,
-  "generateRefreshToken": false,
+  "generateRefreshToken": true,
   "proxyPolicy" : {
     "@class" : "org.jasig.cas.services.RefuseRegisteredServiceProxyPolicy"
   },

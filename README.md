@@ -19,5 +19,5 @@ Build the project and launch the two web applications with jetty on http://local
 To test,
 
 - call the [http://localhost:8080/cas](http://localhost:8080/cas) url and click on the appropriate "Authenticate with xxx" link at the bottom of the login page
-- authenticate at your favorite provider (Facebook, Twitter...) or at the OAuth wrapped CAS server (same password as login, url : _http://localhost:8080/cas2_)
+- authenticate at your favorite provider (Facebook, Twitter...) or at the OAuth wrapped CAS server (`jleleu/jleleu` or `leleuj/leleuj`, url : _http://localhost:8080/cas2_)
 - be redirected to the first CAS server and successfully authenticated.

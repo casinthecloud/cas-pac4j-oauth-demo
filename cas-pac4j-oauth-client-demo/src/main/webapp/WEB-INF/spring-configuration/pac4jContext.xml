@@ -40,4 +40,7 @@
     <bean id="saml1" class="org.pac4j.saml.client.SAML2Client"
           c:configuration-ref="samlConfig" />
 
+    <bean id="usernamePasswordWrapperAuthenticationHandler" class="org.jasig.cas.integration.pac4j.authentication.handler.support.UsernamePasswordWrapperAuthenticationHandler">
+    </bean>
+
 </beans>

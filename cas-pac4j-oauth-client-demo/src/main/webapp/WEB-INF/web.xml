@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0" metadata-complete="true">
-    <display-name>Central Authentication System (CAS) 4.2.0-SNAPSHOT</display-name>
+    <display-name>Central Authentication System (CAS)</display-name>
 
     <absolute-ordering/>
 
@@ -11,6 +11,9 @@
         <param-name>isLog4jAutoInitializationDisabled</param-name>
         <param-value>true</param-value>
     </context-param>
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
@@ -226,6 +229,10 @@
     <session-config>
         <!-- Default to 5 minute session timeouts -->
         <session-timeout>5</session-timeout>
+        <tracking-mode>COOKIE</tracking-mode>
+        <cookie-config>
+            <http-only>true</http-only>
+        </cookie-config>
     </session-config>
 
     <error-page>

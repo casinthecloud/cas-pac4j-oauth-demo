@@ -80,6 +80,11 @@
             </dependency>
             <dependency>
                 <groupId>org.jasig.cas</groupId>
+                <artifactId>cas-server-support-token-webflow</artifactId>
+                <version>${cas.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasig.cas</groupId>
                 <artifactId>cas-server-integration-pac4j</artifactId>
                 <version>${cas.version}</version>
             </dependency>

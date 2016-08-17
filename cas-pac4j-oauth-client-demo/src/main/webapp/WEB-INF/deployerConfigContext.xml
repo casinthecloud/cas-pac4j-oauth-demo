@@ -31,6 +31,7 @@
 
 
     <!-- #DEMO# -->
+    <!---alias name="tokenAuthenticationHandler" alias="primaryAuthenticationHandler" /-->
     <bean id="primaryAuthenticationHandler" class="org.jasig.cas.integration.pac4j.authentication.handler.support.UsernamePasswordWrapperAuthenticationHandler">
     </bean>
     <!-- #DEMO# -->

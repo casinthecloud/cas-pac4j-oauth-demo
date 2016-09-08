@@ -1,5 +1,5 @@
 {
-  "@class" : "org.jasig.cas.support.oauth.services.OAuthRegisteredService",
+  "@class" : "org.apereo.cas.support.oauth.services.OAuthRegisteredService",
   "serviceId" : "http://localhost:8080/cas/login\\?client_name=CasOAuthWrapperClient",
   "name" : "my great webapp for OAuth",
   "id" : 1,
@@ -7,21 +7,21 @@
   "clientId" : "this_is_the_key",
   "clientSecret" : "this_is_the_secret",
   "proxyPolicy" : {
-    "@class" : "org.jasig.cas.services.RefuseRegisteredServiceProxyPolicy"
+    "@class" : "org.apereo.cas.services.RefuseRegisteredServiceProxyPolicy"
   },
   "usernameAttributeProvider" : {
-    "@class" : "org.jasig.cas.services.DefaultRegisteredServiceUsernameProvider"
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceUsernameProvider"
   },
   "attributeReleasePolicy" : {
-    "@class" : "org.jasig.cas.services.ReturnAllAttributeReleasePolicy",
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy",
     "principalAttributesRepository" : {
-      "@class" : "org.jasig.cas.authentication.principal.DefaultPrincipalAttributesRepository"
+      "@class" : "org.apereo.cas.authentication.principal.DefaultPrincipalAttributesRepository"
     },
     "authorizedToReleaseCredentialPassword" : false,
     "authorizedToReleaseProxyGrantingTicket" : false
   },
   "accessStrategy" : {
-    "@class" : "org.jasig.cas.services.DefaultRegisteredServiceAccessStrategy",
+    "@class" : "org.apereo.cas.services.DefaultRegisteredServiceAccessStrategy",
     "enabled" : true,
     "ssoEnabled" : true
   }

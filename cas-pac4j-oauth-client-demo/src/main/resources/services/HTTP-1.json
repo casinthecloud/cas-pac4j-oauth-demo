@@ -1,5 +1,5 @@
 {
-  "@class" : "org.jasig.cas.services.RegexRegisteredService",
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
   "serviceId" : "^(http)://.*",
   "name" : "HTTP",
   "id" : 1,

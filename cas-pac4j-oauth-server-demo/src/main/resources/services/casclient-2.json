@@ -1,5 +1,5 @@
 {
-  "@class" : "org.jasig.cas.services.RegexRegisteredService",
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
   "serviceId" : "http://localhost:8080/cas/login\\?client_name=CasClient",
   "name" : "a CAS service for another CAS server",
   "id" : 2,

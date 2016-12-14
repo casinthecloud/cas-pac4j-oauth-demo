@@ -84,7 +84,7 @@
     </modules>
 
     <properties>
-        <cas.version>5.0.0.RC4-SNAPSHOT</cas.version>
+        <cas.version>5.0.0</cas.version>
         <java.version>1.8</java.version>
     </properties>
 </project>

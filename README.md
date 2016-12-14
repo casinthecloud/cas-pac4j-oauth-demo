@@ -4,8 +4,8 @@
 
 This *cas-pac4j-oauth-demo* project is a web demo for the **CAS server** to test **authentication delegation** for the OAuth, OpendID, CAS, SAML and OpenID Connect protocols. It's composed of two modules (web applications):
 
-- the *cas-pac4j-oauth-client-demo* module is a CAS server which uses the `cas-server-support-pac4j` module to delegate authentication to Facebook, Twitter, another CAS server... See [http://jasig.github.io/cas/4.2.x/integration/Delegate-Authentication.html](http://jasig.github.io/cas/4.1.x/integration/Delegate-Authentication.html)
-- the *cas-pac4j-oauth-server-demo* module is a CAS server which uses the `cas-server-support-oauth` module to act as an OAuth server: [http://jasig.github.io/cas/4.1.x/protocol/OAuth-Protocol.html](http://jasig.github.io/cas/4.2.x/protocol/OAuth-Protocol.html).
+- the *cas-pac4j-oauth-client-demo* module is a CAS server which uses the `cas-server-support-pac4j-webflow` module to delegate authentication to Facebook, Twitter, another CAS server... See [https://apereo.github.io/cas/5.0.x/integration/Delegate-Authentication.html](https://apereo.github.io/cas/5.0.x/integration/Delegate-Authentication.html)
+- the *cas-pac4j-oauth-server-demo* module is a CAS server which uses the `cas-server-support-oauth` module to act as an OAuth server: [https://apereo.github.io/cas/5.0.x/installation/OAuth-OpenId-Authentication.html](https://apereo.github.io/cas/5.0.x/installation/OAuth-OpenId-Authentication.html).
 
 ## Start & test
 

@@ -13,7 +13,7 @@
         <AsyncLogger name="com.couchbase" level="warn" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
-        <AsyncLogger name="org.apereo.cas.web.CasWebApplication" level="info" additivity="false" includeLocation="true">
+        <AsyncLogger name="org.apereo.cas.web.CasWebApplication" level="warn" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
         <AsyncLogger name="org.springframework.security" level="warn" additivity="false">
@@ -25,7 +25,7 @@
         <AsyncLogger name="org.jasig.cas.client" level="info" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
-        <AsyncLogger name="org.apereo" level="info" additivity="false" includeLocation="true">
+        <AsyncLogger name="org.apereo" level="warn" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
         <AsyncLogger name="org.apereo.services.persondir" level="warn" additivity="false" includeLocation="true">
@@ -79,17 +79,6 @@
         <AsyncLogger name="org.thymeleaf" level="warn" additivity="false">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
-
-        <AsyncLogger name="org.pac4j" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.apereo.cas.support.oauth" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.apereo.cas.support.oidc" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-
         <AsyncLogger name="org.opensaml" level="warn" additivity="false">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
@@ -125,6 +114,31 @@
         <AsyncLogger name="org.apache.http" level="warn" additivity="false">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
+
+
+        <AsyncLogger name="org.springframework.webflow.engine.ViewState" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.springframework.webflow.engine.ActionState" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+        <!--AsyncLogger name="org.springframework.webflow.engine.Transition" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.springframework.webflow.execution.ActionExecutor" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apereo.cas.support.pac4j.web.flow" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger-->
+        <AsyncLogger name="org.apereo.cas.web.flow.resolver.impl" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+        <AsyncLogger name="org.apereo.cas.authentication.PolicyBasedAuthenticationManager" level="debug" additivity="false">
+            <AppenderRef ref="casConsole"/>
+        </AsyncLogger>
+
+
         <AsyncRoot level="error">
             <AppenderRef ref="casConsole"/>
         </AsyncRoot>

@@ -1,0 +1,31 @@
+cas.authn.accept.users: jleleu::jleleu,leleuj::leleuj
+
+cas.tgc.secure: false
+
+cas.tgc.crypto.enabled: false
+cas.webflow.crypto.enabled: false
+
+cas.server.name: http://localhost:8080
+cas.server.prefix: http://localhost:8080/cas
+cas.host.name: castest
+
+cas.adminPagesSecurity.ip: .*
+cas.monitor.endpoints.sensitive: false
+cas.monitor.endpoints.enabled: true
+endpoints.sensitive: false
+endpoints.enabled: true
+
+cas.authn.oauth.code.timeToKillInSeconds: 30000
+cas.authn.oauth.code.numberOfUses: 10000
+
+cas.authn.pac4j.facebook.fields: id,name,first_name,middle_name,last_name,gender,locale,languages,link,third_party_id,timezone,updated_time,verified,bio,birthday,education,email,hometown,interested_in,location,political,favorite_athletes,favorite_teams,quotes,relationship_status,religion,significant_other,website,work,friends,movies,music,books,likes,albums,events,groups,music.listens,picture
+cas.authn.pac4j.facebook.id: 153186971478756
+cas.authn.pac4j.facebook.secret: 4e72f0233e6b4594e49ca5eaa59660a4
+cas.authn.pac4j.facebook.scope: email,user_likes,user_about_me,user_birthday,user_education_history,user_hometown,user_relationship_details,user_location,user_religion_politics,user_relationships,user_work_history,user_website,user_photos,user_events,user_actions.music,badscope
+cas.authn.pac4j.twitter.id: OPEWaSoTuAe49K4dSoRvNw
+cas.authn.pac4j.twitter.secret: aKmvleltXAmLKcnlMgzRjTsCnhV3QVMVDh153xJttCo
+cas.authn.pac4j.saml[0].keystorePassword: pac4j-demo-passwd
+cas.authn.pac4j.saml[0].privateKeyPassword: pac4j-demo-passwd
+cas.authn.pac4j.saml[0].keystorePath: classpath:/samlKeystore.jks
+cas.authn.pac4j.saml[0].identityProviderMetadataPath: classpath:/metadata-okta.xml
+cas.authn.pac4j.saml[0].serviceProviderMetadataPath: /tmp

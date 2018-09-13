@@ -1,12 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.leleuj</groupId>
+    <groupId>com.casinthecloud</groupId>
     <artifactId>cas-pac4j-oauth-demo</artifactId>
-    <version>5.0.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>CAS Pac4J / OAuth demo</name>
-    <description>CAS Pac4J / OAuth demo</description>
+    <version>5.2.7-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <repositories>
         <repository>
@@ -20,71 +17,66 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-        <repository>
-            <id>jasig-developer-repo</id>
-            <name>Jasig developer repository</name>
-            <url>http://developer.jasig.org/repo/content/groups/m2-legacy/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>shibboleth-public-repo</id>
-            <name>Shibboleth releases repository</name>
-            <url>https://build.shibboleth.net/nexus/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
     </repositories>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.apereo.cas</groupId>
-                <artifactId>cas-server-webapp</artifactId>
-                <version>${cas.version}</version>
-                <type>war</type>
-                <scope>runtime</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.apereo.cas</groupId>
-                <artifactId>cas-server-support-json-service-registry</artifactId>
-                <version>${cas.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-webapp</artifactId>
+            <version>${cas.version}</version>
+            <type>war</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-pac4j-webflow</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+
+    </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>2.6</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.5.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <warName>cas</warName>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <recompressZippedFiles>false</recompressZippedFiles>
+                    <archive>
+                        <compress>false</compress>
+                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.apereo.cas</groupId>
+                            <artifactId>cas-server-webapp</artifactId>
+                            <excludes>
+                                <exclude>WEB-INF/classes/services/*.json</exclude>
+                            </excludes>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>cas</finalName>
     </build>
 
-    <modules>
-        <module>cas-pac4j-oauth-client-demo</module>
-        <module>cas-pac4j-oauth-server-demo</module>
-    </modules>
-
     <properties>
-        <cas.version>5.0.0</cas.version>
+        <cas.version>5.2.7</cas.version>
         <java.version>1.8</java.version>
     </properties>
+
 </project>

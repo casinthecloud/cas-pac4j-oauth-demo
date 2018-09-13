@@ -4,7 +4,9 @@
 target/
 test-output/
 bin/
+*.log
 .idea
 *.iml
-overlays
-*.log
+overlays/
+.DS_Store
+node_modules/

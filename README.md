@@ -1,6 +1,6 @@
 ## What is this project?
 
-This *cas-pac4j-oauth-demo* project has been created to test the authentication delegation in the CAS server:  
+This *cas-pac4j-oauth-demo* project has been created to test the authentication delegation in the CAS server.
 
 ## Build & test
 

@@ -25,7 +25,7 @@
         <AsyncLogger name="org.jasig.cas.client" level="info" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
-        <AsyncLogger name="org.apereo" level="warn" additivity="false" includeLocation="true">
+        <AsyncLogger name="org.apereo" level="info" additivity="false" includeLocation="true">
             <AppenderRef ref="casConsole"/>
         </AsyncLogger>
         <AsyncLogger name="org.apereo.services.persondir" level="warn" additivity="false" includeLocation="true">

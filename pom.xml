@@ -27,13 +27,16 @@
             <type>war</type>
             <scope>runtime</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.apereo.cas</groupId>
+            <artifactId>cas-server-support-json-service-registry</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.apereo.cas</groupId>
             <artifactId>cas-server-support-pac4j-webflow</artifactId>
             <version>${cas.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

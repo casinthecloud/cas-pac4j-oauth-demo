@@ -9,12 +9,6 @@ cas.server.name: http://localhost:8080
 cas.server.prefix: http://localhost:8080/cas
 cas.host.name: castest
 
-cas.adminPagesSecurity.ip: .*
-cas.monitor.endpoints.sensitive: false
-cas.monitor.endpoints.enabled: true
-endpoints.sensitive: false
-endpoints.enabled: true
-
 cas.authn.oauth.code.timeToKillInSeconds: 30000
 cas.authn.oauth.code.numberOfUses: 10000
 

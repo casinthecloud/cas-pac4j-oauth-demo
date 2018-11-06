@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.casinthecloud</groupId>
     <artifactId>cas-pac4j-oauth-demo</artifactId>
-    <version>5.2.7-SNAPSHOT</version>
+    <version>5.2.8-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -80,7 +80,7 @@
     </build>
 
     <properties>
-        <cas.version>5.2.7</cas.version>
+        <cas.version>5.2.8</cas.version>
         <java.version>1.8</java.version>
     </properties>
 

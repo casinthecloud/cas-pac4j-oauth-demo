@@ -28,7 +28,8 @@ cas.authn.pac4j.saml[0].keystorePassword: pac4j-demo-passwd
 cas.authn.pac4j.saml[0].privateKeyPassword: pac4j-demo-passwd
 cas.authn.pac4j.saml[0].keystorePath: classpath:/samlKeystore.jks
 cas.authn.pac4j.saml[0].identityProviderMetadataPath: classpath:/metadata-okta.xml
-cas.authn.pac4j.saml[0].serviceProviderMetadataPath: /tmp
+cas.authn.pac4j.saml[0].serviceProviderEntityId: http://localhost:8080/cas/login
+cas.authn.pac4j.saml[0].serviceProviderMetadataPath: /tmp/sp-metadata.xml
 
 cas.ticket.st.numberOfUses: 1000
 cas.ticket.st.timeToKillInSeconds: 10000

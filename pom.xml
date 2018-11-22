@@ -78,8 +78,8 @@
     </build>
 
     <properties>
-        <cas.version>6.0.0-RC2</cas.version>
-        <java.version>10</java.version>
+        <cas.version>6.0.0-RC4-SNAPSHOT</cas.version>
+        <java.version>11</java.version>
     </properties>
 
 </project>

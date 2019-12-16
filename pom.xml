@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>org.apereo.cas</groupId>
-            <artifactId>cas-server-webapp</artifactId>
+            <artifactId>cas-server-webapp-tomcat</artifactId>
             <version>${cas.version}</version>
             <type>war</type>
             <scope>runtime</scope>
@@ -51,18 +51,39 @@
                     <recompressZippedFiles>false</recompressZippedFiles>
                     <archive>
                         <compress>false</compress>
-                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestFile>${project.build.directory}/war/work/org.apereo.cas/cas-server-webapp-tomcat/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
                     <overlays>
                         <overlay>
                             <groupId>org.apereo.cas</groupId>
-                            <artifactId>cas-server-webapp</artifactId>
+                            <artifactId>cas-server-webapp-tomcat</artifactId>
                             <excludes>
                                 <exclude>WEB-INF/classes/services/*.json</exclude>
                             </excludes>
                         </overlay>
                     </overlays>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.0.RELEASE</version>
+                <configuration>
+                    <mainClass>org.apereo.cas.web.CasWebApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.apereo.cas</groupId>
+                            <artifactId>cas-server-webapp-tomcat</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

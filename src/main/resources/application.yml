@@ -32,3 +32,8 @@ cas.ticket.st.numberOfUses: 1000
 cas.ticket.st.timeToKillInSeconds: 10000
 
 cas.serviceRegistry.json.location: classpath:/services
+
+server.port: 8080
+server.ssl.enabled: false
+cas.server.tomcat.httpProxy.enabled: false
+cas.server.tomcat.http.enabled: false

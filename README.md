@@ -11,7 +11,7 @@ cd cas-pac4j-oauth-demo
 mvn clean package
 ```
 
-And run the built WAR (`cas.war`) in Tomcat on `http://localhost:8080/cas`.
+And run the built WAR (`cas.war`) as a JAR (embedded Tomcat): it will be available on `http://localhost:8080/cas`.
 
 Use `jleleu`/`jleleu` or `leleuj`/`leleuj` to log in.
 

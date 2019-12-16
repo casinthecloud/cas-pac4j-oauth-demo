@@ -25,6 +25,8 @@ cas.authn.pac4j.saml[0].identityProviderMetadataPath: classpath:/metadata-okta.x
 cas.authn.pac4j.saml[0].serviceProviderEntityId: http://localhost:8080/cas/login?client_name=SAML2Client
 cas.authn.pac4j.saml[0].serviceProviderMetadataPath: /tmp/sp-cas62-metadata.xml
 cas.authn.pac4j.saml[0].clientName: SAML2Client
+cas.authn.pac4j.cas[0].clientName: CAS
+cas.authn.pac4j.cas[0].loginUrl: https://casserverpac4j.herokuapp.com/login
 
 cas.ticket.st.numberOfUses: 1000
 cas.ticket.st.timeToKillInSeconds: 10000

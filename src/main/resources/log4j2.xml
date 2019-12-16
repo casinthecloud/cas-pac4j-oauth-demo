@@ -116,29 +116,6 @@
         </AsyncLogger>
 
 
-        <AsyncLogger name="org.springframework.webflow.engine.ViewState" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.springframework.webflow.engine.ActionState" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <!--AsyncLogger name="org.springframework.webflow.engine.Transition" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.springframework.webflow.execution.ActionExecutor" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.apereo.cas.support.pac4j.web.flow" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger-->
-        <AsyncLogger name="org.apereo.cas.web.flow.resolver.impl" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-        <AsyncLogger name="org.apereo.cas.authentication.PolicyBasedAuthenticationManager" level="debug" additivity="false">
-            <AppenderRef ref="casConsole"/>
-        </AsyncLogger>
-
-
         <AsyncRoot level="error">
             <AppenderRef ref="casConsole"/>
         </AsyncRoot>

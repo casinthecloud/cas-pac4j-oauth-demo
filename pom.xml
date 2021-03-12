@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.casinthecloud</groupId>
     <artifactId>cas-pac4j-oauth-demo</artifactId>
-    <version>6.2.8-SNAPSHOT</version>
+    <version>6.3.2-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -57,9 +57,6 @@
                         <overlay>
                             <groupId>org.apereo.cas</groupId>
                             <artifactId>cas-server-webapp-tomcat</artifactId>
-                            <excludes>
-                                <exclude>WEB-INF/classes/services/*.json</exclude>
-                            </excludes>
                         </overlay>
                     </overlays>
                 </configuration>
@@ -99,7 +96,7 @@
     </build>
 
     <properties>
-        <cas.version>6.2.8</cas.version>
+        <cas.version>6.3.2</cas.version>
         <java.version>11</java.version>
     </properties>
 

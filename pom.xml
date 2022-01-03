@@ -96,7 +96,7 @@
     </build>
 
     <properties>
-        <cas.version>6.5.0-SNAPSHOT</cas.version>
+        <cas.version>6.5.0-RC4</cas.version>
         <java.version>11</java.version>
     </properties>
 

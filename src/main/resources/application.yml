@@ -37,4 +37,5 @@ cas.serviceRegistry.json.location: classpath:/services
 server.port: 8080
 server.ssl.enabled: false
 cas.server.tomcat.httpProxy.enabled: false
-cas.server.tomcat.http.enabled: false
+cas.server.tomcat.http:
+  - enabled: false

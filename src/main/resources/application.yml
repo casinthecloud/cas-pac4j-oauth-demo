@@ -1,6 +1,7 @@
 cas.authn.accept.users: jleleu::jleleu,leleuj::leleuj
 
 cas.tgc.secure: false
+cas.tgc.same-site-policy: Lax
 
 cas.tgc.crypto.enabled: false
 cas.webflow.crypto.enabled: false
